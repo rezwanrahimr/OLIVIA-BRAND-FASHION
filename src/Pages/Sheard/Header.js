@@ -6,13 +6,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import CompanyLogo from '../../images/companyLogo.png';
+import header from './header.css';
+
 const Header = () => {
   return (
-    <div>
       <div>
-        <Navbar bg="light" expand="lg">
+        <Navbar className='shadow-lg bg-body rounded px-3' bg="white" expand="lg">
           <Container fluid>
-            <Navbar.Brand href="#"><img className='p-1' src={CompanyLogo} alt="" width='130px' /></Navbar.Brand>
+            <Navbar.Brand href="#"><img className='p-1' src={CompanyLogo} alt="" width='100px' /></Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
@@ -49,7 +50,6 @@ const Header = () => {
           </Container>
         </Navbar>
       </div>
-    </div>
   );
 };
 
