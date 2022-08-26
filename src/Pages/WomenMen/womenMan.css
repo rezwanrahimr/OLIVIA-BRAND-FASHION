@@ -1,0 +1,9 @@
+.containeer:hover .imgHover{
+    transform: scale(1.3);
+}
+.containeer{
+    overflow: hidden;
+}
+.containeer.imgHover{
+    transition:2s;
+}
