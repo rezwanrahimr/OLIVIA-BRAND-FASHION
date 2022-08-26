@@ -5,7 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import CompanyLogo from '../../images/companyLogo.png';
-import header from './header.css';
 
 const Header = () => {
   return (

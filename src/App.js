@@ -1,13 +1,22 @@
 import './App.css';
 import Home from './Pages/Home/Home';
 import Header from './Pages/Sheard/Header';
+import {Routes,Route} from "react-router-dom";
+import Login from './Pages/Login/Login';
+import SignUp from './Pages/Login/SignUp';
 
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header></Header>
-      <Home></Home>
+      <Routes>
+        <Route path='/' element={<Home></Home>}>Home</Route>
+        <Route path='/Home' element={<Home></Home>}>Home</Route>
+        <Route path='/Login' element={<Login></Login>}>Login</Route>
+        <Route path='/SignUp' element={<SignUp></SignUp>}>Login</Route>
+       
+      </Routes>
       
     </div>
   );
