@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import login from './login.css';
 import IMG from '../../images/Fashion blogging-pana.svg';
@@ -6,13 +6,13 @@ import { Button } from 'react-bootstrap';
 
 
 const Login = () => {
-    
+
     return (
         <div className="containerr" >
             <div class="forms-container">
                 <div class="signin-signup">
                     <form action="#" class="formControl sign-in-form">
-                        <h2 class="title">Sign in</h2>
+                        <h2 class="title">SIGN IN</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
                             <input type="text" placeholder="Username" />
@@ -38,7 +38,6 @@ const Login = () => {
                             </a>
                         </div>
                     </form>
-                   
                 </div>
             </div>
 
@@ -47,13 +46,12 @@ const Login = () => {
                     <div class="content">
                         <h3>NOT MEMBER? BECOME ON TODAY</h3>
                         <p>
-                        CREATE A NEW ACCOUNT. ONCE YOU VE SET IT UP YOU CAN TAKE ADVANTAGE OF MANY BENEFITS OF MEMBERSHIP.
+                            CREATE A NEW ACCOUNT. ONCE YOU VE SET IT UP YOU CAN TAKE ADVANTAGE OF MANY BENEFITS OF MEMBERSHIP.
                         </p>
-                        <Link to='/signUP'><Button  class="LoginButtontransparent" id="sign-up-btn" variant="primary">SIGN-UP</Button>{' '}</Link>
+                        <Link to='/signUP'><Button class="LoginButtontransparent" id="sign-up-btn" variant="primary">SIGN-UP</Button>{' '}</Link>
                     </div>
                     <img src={IMG} class="image" alt="" />
                 </div>
-                
             </div>
         </div>
 

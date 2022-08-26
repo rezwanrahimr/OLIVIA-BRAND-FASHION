@@ -1,4 +1,7 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import registarImg from '../../images/Login-rafiki.svg'
 
 const SignUp = () => {
     return (
@@ -6,10 +9,10 @@ const SignUp = () => {
             <div class="forms-container">
                 <div class="signin-signup">
                     <form action="#" class="formControl sign-in-form">
-                        <h2 class="title">Sign in</h2>
+                        <h2 class="title">REGISTER</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Username" />
+                            <input type="text" placeholder="Name" />
                         </div>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
@@ -19,7 +22,7 @@ const SignUp = () => {
                             <i class="fas fa-lock"></i>
                             <input type="password" placeholder="Password" />
                         </div>
-                        <input type="submit" value="Login" class="LoginButtonsolid" />
+                        <Button className='px-5' variant="outline-primary">CREATE</Button>{' '}
                         <p class="social-text">Or Sign in with social platforms</p>
                         <div class="social-media">
                             <a href="#" class="social-icon">
@@ -73,16 +76,13 @@ const SignUp = () => {
             <div class="panels-container">
                 <div class="panel left-panel">
                     <div class="content">
-                        <h3>New here ?</h3>
+                        <h3>ALREADY HAVE A ACCOUNT ?</h3>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-                            ex ratione. Aliquid!
+                        SIGN IN BELOW USING YOUR CAPIE 5 DEMO INFORMATION.
                         </p>
-                        <button class="LoginButtontransparent" id="sign-up-btn">
-                            Sign up
-                        </button>
+                        <Link to='/Login'><Button class="LoginButtontransparent" id="sign-up-btn" variant="primary">SIGN-IN</Button>{' '}</Link>
                     </div>
-                    <img src="img/log.svg" class="image" alt="" />
+                    <img src={registarImg} class="image" alt="" />
                 </div>
                 <div class="panel right-panel">
                     <div class="content">
