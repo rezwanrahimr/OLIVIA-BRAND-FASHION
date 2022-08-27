@@ -1,5 +1,6 @@
 .HeaderText{
     cursor: pointer;
+    
 }
 .HeaderText:hover{
     animation: bounce 1s linear;
