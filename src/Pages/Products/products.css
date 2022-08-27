@@ -1,7 +1,7 @@
 :root {
 
 
-    --carribean-green: #40c9a2;
+    --carribean-green: #7eca11;
 
 }
 
@@ -194,7 +194,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    writing-mode: vertical-lr;
+    writing-mode:vertical-rl;
     transform: rotate(180deg);
     z-index: 1;
     letter-spacing: 3px;
