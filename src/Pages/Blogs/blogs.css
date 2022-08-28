@@ -1,0 +1,11 @@
+.imgHover:hover img{
+    transform: scale(1.3);
+    width: 100%;
+}
+.imgHover {
+    overflow: hidden;
+}
+
+.imgHover img {
+    transition: transform 0.35s;
+}
