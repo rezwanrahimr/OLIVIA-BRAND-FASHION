@@ -1,0 +1,12 @@
+.productDec{
+    text-align: justify;
+}
+.checkOutBtn button{
+    border: 1px solid #fb5c42;
+    width: 160px;
+    height: 50px;
+    background-color: #fb5c42;
+    margin-top: 15px;
+    
+
+}

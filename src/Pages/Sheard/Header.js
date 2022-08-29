@@ -44,7 +44,7 @@ const Header = () => {
                   className="me-2 text-dark"
                   aria-label="Search"
                 />
-                <Button variant="btn btn-outline-dark">Search</Button>
+                <Button variant="btn ">Search</Button>
               </Form>
             </Navbar.Collapse>
           </Container>

@@ -11,7 +11,7 @@ const Products = () => {
             .then(data => setProduct(data))
     }, [])
     return (
-        <div className=''>
+        <div className=' mt-5'>
             <h1 className='text-center'>Feature Products</h1>
             <h6 className='text-center font-monospace'>Top sale on this week</h6>
 
@@ -27,9 +27,9 @@ const Products = () => {
                                     <button type="button" class="btn-cart"> add to cart
                                         <span><i class="fas fa-plus"></i></span>
                                     </button>
-                                    <button type="button" class="btn-buy"> buy now
+                                    <Link to={`/Cart/${products._id}`}><button type="button" class="btn-buy"> buy now
                                         <span><i class="fas fa-shopping-cart"></i></span>
-                                    </button>
+                                    </button></Link>
                                 </div>
                             </div>
 
