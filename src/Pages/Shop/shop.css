@@ -1,0 +1,8 @@
+.select{
+    background-color: #fb5c42;
+    color: white;
+}
+.paginaton-button button{
+    padding: 10px 15px;
+    border: 0px;
+}
