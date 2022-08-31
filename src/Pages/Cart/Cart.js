@@ -7,7 +7,7 @@ const Cart = () => {
     const { id } = useParams();
     const [productData, setProductData] = useState([{}]);
     const [cart, setCart] = useState({ ...productData, productQuantity: 1, productTotalPrice: 0 })
-    console.log(productData)
+    console.log(productData[0].ProductQuantity)
     useEffect(() => {
         fetch(`http://localhost:5000/products/${id}`)
             .then(res => res.json())
@@ -19,14 +19,12 @@ const Cart = () => {
 
     // Product Total Price.
     const productPrice = productData[0].ProductPrice;
-    console.log(productPrice)
     const price = parseInt(productPrice) * parseInt(cart.productQuantity);
-    console.log('price', price)
 
 
     // Product Quantity.
     const handleProductQuantity = (type) => {
-        if (type === "add" && cart.productQuantity < productData[0].ProductStock) {
+        if (type === "add" && cart.productQuantity < productData[0].ProductQuantity) {
             setCart({ ...cart, productQuantity: Number(cart.productQuantity) + 1 });
             return;
         }
@@ -55,7 +53,6 @@ const Cart = () => {
                                         -Wrap-style front <br />
                                         -Ruched Detailing<br />
                                         -Invisible Zip Fastening on the back
-
                                         <p className='fw-bold'>Price: {price}</p>
                                     </MDBCardText>
                                     <MDBBtnGroup shadow='0'>

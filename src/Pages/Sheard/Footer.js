@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <MDBFooter bgColor='white' className='text-center  text-lg-start text-muted mt-5'>
             <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
-                <div className='me-5 d-none d-lg-block text-body'>
+                {/* <div className='me-5 d-none d-lg-block text-body'>
                     <span>Follow our social Media:</span>
                 </div>
 
@@ -29,7 +29,7 @@ const Footer = () => {
                     <a href='' className='me-4 text-reset'>
                         <MDBIcon fab icon="github" />
                     </a>
-                </div>
+                </div> */}
             </section>
 
             <section className=''>
@@ -114,12 +114,12 @@ const Footer = () => {
                 </MDBContainer>
             </section>
 
-            <div className='text-center text-body p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+            {/* <div className='text-center text-body p-4 bg-white' >
                 © 2022 Copyright : 
                 <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
                  rezwan-rahim.web.app
                 </a>
-            </div>
+            </div> */}
         </MDBFooter>
     );
 };
