@@ -17,7 +17,7 @@ const Products = () => {
 
             <div className='AllProducts'>
             {
-                product.map(products => <div key={products._id}>
+                product.slice(0,12).map(products => <div key={products._id}>
                         <div class="product-items"> <div class="product">
                             <div class="product-content">
                                 <div class="product-img">
@@ -58,7 +58,7 @@ const Products = () => {
             }
             </div>
             <div className='AllProductsButton text-center'>
-                <Link to='' className='text-decoration-none'><p className='mt-3 '>VIEW ALL PRODUCTS</p></Link>
+                <Link to='/Shop' className='text-decoration-none'><p className='mt-3 '>VIEW ALL PRODUCTS</p></Link>
             </div>
         </div>
 

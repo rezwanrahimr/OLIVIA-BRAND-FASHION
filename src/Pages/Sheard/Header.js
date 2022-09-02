@@ -24,7 +24,8 @@ const Header = () => {
               <Link className='text-decoration-none' to="/home"><Nav.Link href="/home" className='fw-bold text-black'>HOME</Nav.Link></Link>
               <Nav.Link href="#action2" className='fw-bold text-black'>COLLECTION </Nav.Link>
               <Link className='text-decoration-none' to="/Shop"> <Nav.Link href="#action2" className='fw-bold text-black'>SHOP </Nav.Link></Link>
-              <Nav.Link href="#action2" className='fw-bold text-black'>ABOUT </Nav.Link>
+              <Link className='text-decoration-none' to="/About"><Nav.Link href="#action2" className='fw-bold text-black'>ABOUT </Nav.Link></Link>
+              
               <Nav.Link href="#action2" className='fw-bold text-black'>PAGES </Nav.Link>
               <NavDropdown
                 id="nav-dropdown-white-example"
