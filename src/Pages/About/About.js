@@ -4,12 +4,13 @@ import imgONe from '../../images/Competitive intelligence-bro.svg';
 import imgTWo from '../../images/Segmentation-bro.svg';
 import OurService from '../OurService/OurService';
 import Footer from '../Sheard/Footer';
+import Subscribe from '../Subscribe/Subscribe';
 import about from './about.css';
 
 
 const About = () => {
     return (
-        <div className='text-black about mt-5'>
+        <div className='text-black about'>
             <h1 className='text-center text-black mt-5 fw-bold'>ABOUT US</h1>
             <span className='d-flex justify-content-center align-items-center'><a className='text-black' href="/Home">Home</a><MDBIcon className='mx-2' fas icon="angle-right" /><a href="">About us</a></span>
             <div className='row'>
@@ -25,7 +26,7 @@ const About = () => {
                 </div>
             </div>
             <div>
-                <div className='my-5'>
+                <div className='ourTeam'>
                 <h1 className='text-center fw-bold '>OUR TEAM</h1>
                 <h5 className='font-monospace text-center'>Our Experience</h5>
                 </div>
@@ -53,8 +54,8 @@ const About = () => {
 
                 </div>
             </div>
-            <div>
-                <div className='text-center my-5'>
+            <div className='chooseUs'>
+                <div className='text-center '>
                     <h1 className='fw-bold'>WHY CHOOSE US</h1>
                     <h5 className='font-monospace'>Our Benefit</h5>
                 </div>
@@ -93,6 +94,7 @@ const About = () => {
                 </div>
             </div>
             <OurService></OurService>
+            <Subscribe></Subscribe>
             <Footer></Footer>
         </div>
     );

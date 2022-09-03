@@ -1,0 +1,34 @@
+.subscribeSection{
+    margin: 100px 0px;
+}
+.subscribeInput input{
+    padding: 0 30px;
+    border-radius: 26px 0px 0px 26px;
+    border-color: #f2f2e7;
+    border-right-width: 0px;
+    border-style: solid;
+    height: 52px;
+    line-height: 50px;
+    font-size: 15px;
+    background-color: #f4f5f4;
+    width: 50%;
+    border: 0px ;
+}
+.subscribeInput button{
+    width: 160px;
+    height: 52px;
+    line-height: 50px;
+    border: 1px solid #171717;
+    background-color: #171717;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 0 26px 26px 0;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+
+}
+.subscribeInput:hover button{
+    background-color: #fb5c42;
+    color:white;
+    border: 0px;
+}
