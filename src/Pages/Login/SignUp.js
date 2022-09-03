@@ -3,12 +3,12 @@ import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import registarImg from '../../images/Login-rafiki.svg'
 import auth from '../../firebase.init';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
 const SignUp = () => {
     const navigate = useNavigate();
 
-        // Sign Up with Google.
+    // Sign Up with Google.
     const [signInWithGoogle, Guser, Gloading, Gerror] = useSignInWithGoogle(auth);
 
     // create user with Email and Password.
@@ -16,18 +16,22 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
 
+    // Sign up with Facebook.
+    const [signInWithFacebook, Fuser, Floading, Ferror] = useSignInWithFacebook(auth);
+   
+
     if (error) {
-       
+
     }
-    if (loading || Gloading) {
+    if (loading || Gloading || Floading) {
         return <p>Loading...</p>;
     }
-    if (user || Guser) {
+    if (user || Guser || Fuser) {
         navigate('/Home')
     }
 
 
-  
+
     return (
         <div className="containerr" >
             <div class="forms-container">
@@ -47,18 +51,18 @@ const SignUp = () => {
                             <input name='password' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
                         </div>
                         {
-                            error || Gerror?<p className='text-danger'>{error.message}</p> :''
+                            error || Gerror || Ferror? <p className='text-danger'>{error.message || Gerror.message || Ferror.message}</p> : ''
                         }
                         <Button onClick={() => createUserWithEmailAndPassword(email, password)} className='px-5' variant="outline-primary">CREATE</Button>{' '}
                         <p class="social-text">Or Sign in with social platforms</p>
                         <div class="social-media">
-                            <a href="#" class="social-icon">
+                            <a href="#" onClick={()=> signInWithFacebook(email,password)} class="social-icon">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                             <a href="#" class="social-icon">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="#" onClick={()=>signInWithGoogle(email,password)} class="social-icon">
+                            <a href="#" onClick={() => signInWithGoogle(email, password)} class="social-icon">
                                 <i class="fab fa-google"></i>
                             </a>
                             <a href="#" class="social-icon">
