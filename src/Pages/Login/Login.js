@@ -5,6 +5,7 @@ import IMG from '../../images/Fashion blogging-pana.svg';
 import { Button } from 'react-bootstrap';
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import Loading from '../Sheard/Loading';
 
 
 const Login = () => {
@@ -28,7 +29,7 @@ const Login = () => {
         );
     }
     if (loading) {
-        return <p>Loading...</p>;
+        return <Loading></Loading>
     }
     if (user) {
         navigate('/Home')

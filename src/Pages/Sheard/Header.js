@@ -5,10 +5,21 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CompanyLogo from '../../images/companyLogo.png';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import {signOut } from 'firebase/auth';
 
 const Header = () => {
+  const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+
+  const logout = () => {
+    signOut(auth);
+    
+
+  };
   return (
     <div className='' style={{ marginTop: 75 }}>
       <Navbar className='shadow-none bg-body rounded px-3 fixed-top' bg="white" expand="lg">
@@ -33,7 +44,9 @@ const Header = () => {
                 menuVariant="white"
                 className='fw-bold text-black'
               >
-                <Link className='text-decoration-none' to="/Login"><NavDropdown.Item href="/Login">LOGIN</NavDropdown.Item></Link>
+                {
+                  user? <Link className='text-decoration-none' to="/Login"><NavDropdown.Item href="/Login"><button className='border-0 bg-white' onClick={()=>logout()}>SIGN-OUT</button></NavDropdown.Item></Link> : <Link className='text-decoration-none' to="/Login"><NavDropdown.Item href="/Login">LOGIN</NavDropdown.Item></Link>
+                }
                 <Link className='text-decoration-none' to="/SignUp"><NavDropdown.Item href="/SignUp">REGISTER</NavDropdown.Item></Link>
 
               </NavDropdown>
