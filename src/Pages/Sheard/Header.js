@@ -10,11 +10,14 @@ import CompanyLogo from '../../images/companyLogo.png';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import {signOut } from 'firebase/auth';
+import Loading from './Loading';
 
 const Header = () => {
   const navigate = useNavigate();
-  const [user, loading, error] = useAuthState(auth);
-
+  const [user, loading] = useAuthState(auth);
+  if(loading){
+    return <Loading></Loading>
+  }
   const logout = () => {
     signOut(auth);
     
@@ -47,7 +50,9 @@ const Header = () => {
                 {
                   user? <Link className='text-decoration-none' to="/Login"><NavDropdown.Item href="/Login"><button className='border-0 bg-white' onClick={()=>logout()}>SIGN-OUT</button></NavDropdown.Item></Link> : <Link className='text-decoration-none' to="/Login"><NavDropdown.Item href="/Login">LOGIN</NavDropdown.Item></Link>
                 }
-                <Link className='text-decoration-none' to="/SignUp"><NavDropdown.Item href="/SignUp">REGISTER</NavDropdown.Item></Link>
+               {
+                 user?'': <Link className='text-decoration-none' to="/SignUp"><NavDropdown.Item href="/SignUp">REGISTER</NavDropdown.Item></Link>
+               }
 
               </NavDropdown>
             </Nav>

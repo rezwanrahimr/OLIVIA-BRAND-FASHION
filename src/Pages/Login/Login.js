@@ -1,40 +1,34 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import login from './login.css';
 import IMG from '../../images/Fashion blogging-pana.svg';
 import { Button } from 'react-bootstrap';
 import auth from '../../firebase.init';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../Sheard/Loading';
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
     const navigate = useNavigate();
-    
-    // user login with email and password.
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
-    const [
-        signInWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useSignInWithEmailAndPassword(auth);
 
-      if (error) {
-        return (
-            <div>
-                <p>Error: {error.message}</p>
-            </div>
-        );
+    // Sign Up with Google.
+    const [signInWithGoogle, Guser, Gloading, Gerror] = useSignInWithGoogle(auth);
+
+    // user login with email and password.
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+
+    if (error) {
+        
     }
-    if (loading) {
-        return <Loading></Loading>
+    if (loading || Gloading) {
+        return <p>Loading...</p>;
     }
-    if (user) {
+    if (user || Guser) {
         navigate('/Home')
     }
-
     return (
         <div className="containerr" >
             <div class="forms-container">
@@ -43,13 +37,16 @@ const Login = () => {
                         <h2 class="title">SIGN IN</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input name='email' value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="Username" />
+                            <input name='email' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Username" />
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
                             <input name='password' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
                         </div>
-                        <Button  className='px-5' variant="outline-primary" onClick={()=>signInWithEmailAndPassword(email,password)}>LOGIN</Button>{' '}
+                        {
+                            error?<p className='text-danger'>{error.message}</p> :''
+                        }
+                        <Button className='px-5' variant="outline-primary" onClick={() => signInWithEmailAndPassword(email, password)}>LOGIN</Button>{' '}
                         <p class="social-text">Or Sign in with social platforms</p>
                         <div class="social-media">
                             <a href="#" class="social-icon">
