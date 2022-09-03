@@ -2,6 +2,7 @@ import { MDBIcon } from 'mdb-react-ui-kit';
 import React from 'react';
 import imgONe from '../../images/Competitive intelligence-bro.svg';
 import imgTWo from '../../images/Segmentation-bro.svg';
+import OurService from '../OurService/OurService';
 import Footer from '../Sheard/Footer';
 import about from './about.css';
 
@@ -91,6 +92,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
+            <OurService></OurService>
             <Footer></Footer>
         </div>
     );
