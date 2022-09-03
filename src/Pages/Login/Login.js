@@ -27,7 +27,7 @@ const Login = () => {
         
     }
     if (loading || Gloading || Floading) {
-        return <p>Loading...</p>;
+        return <Loading></Loading>
     }
     if (user || Guser || Fuser) {
         navigate('/Home')

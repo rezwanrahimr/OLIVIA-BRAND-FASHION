@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import registarImg from '../../images/Login-rafiki.svg'
 import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import Loading from '../Sheard/Loading';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ const SignUp = () => {
 
     }
     if (loading || Gloading || Floading) {
-        return <p>Loading...</p>;
+        return <Loading></Loading>
     }
     if (user || Guser || Fuser) {
         navigate('/Home')
