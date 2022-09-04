@@ -8,7 +8,9 @@ import AddProduct from './Pages/AddProduct/AddProduct';
 import Cart from './Pages/Cart/Cart';
 import Shop from './Pages/Shop/Shop';
 import About from './Pages/About/About';
+import ProtractedRoute from './Pages/ProtractedRoute/ProtractedRoute';
 import { ToastContainer } from 'react-toastify';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 
 function App() {
@@ -21,7 +23,8 @@ function App() {
         <Route path='/Login' element={<Login></Login>}>Login</Route>
         <Route path='/SignUp' element={<SignUp></SignUp>}>Login</Route>
         <Route path='/AddProduct' element={<AddProduct></AddProduct>}>Login</Route>
-        <Route path='/Cart/:id' element={<Cart></Cart>}>Cart</Route>
+        <Route path='/Cart/:id' element={<ProtractedRoute><Cart></Cart></ProtractedRoute>}>Cart</Route>
+        <Route path='/Dashboard' element={<ProtractedRoute><Dashboard></Dashboard></ProtractedRoute>}>Cart</Route>
        <Route path='/Shop' element={<Shop></Shop>}>Shop</Route>
        <Route path='/About' element={<About></About>}></Route>
       </Routes>

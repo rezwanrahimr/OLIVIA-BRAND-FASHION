@@ -11,14 +11,14 @@ const Shop = () => {
 
     // Load All Products.
     useEffect(() => {
-        fetch(`http://localhost:5000/productss?page=${selectPage}&size=${productSize}`)
+        fetch(`https://pacific-journey-95029.herokuapp.com/products?page=${selectPage}&size=${productSize}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [selectPage,productSize]);
 
     // Product Count.
     useEffect(()=>{
-        fetch('http://localhost:5000/productsCount')
+        fetch('https://pacific-journey-95029.herokuapp.com/productsCount')
         .then(res => res.json())
         .then(data => {
             const count = data.result;
