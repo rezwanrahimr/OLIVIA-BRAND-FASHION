@@ -9,7 +9,7 @@ const Cart = () => {
     const [cart, setCart] = useState({ ...productData, productQuantity: 1, productTotalPrice: 0 })
     console.log(productData[0].ProductQuantity)
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://pacific-journey-95029.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => setProductData(data))
 
