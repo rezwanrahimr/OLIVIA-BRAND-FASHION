@@ -11,7 +11,8 @@ import About from './Pages/About/About';
 import ProtractedRoute from './Pages/ProtractedRoute/ProtractedRoute';
 import { ToastContainer } from 'react-toastify';
 import Dashboard from './Pages/Dashboard/Dashboard';
-
+import MyOrder from './Pages/Dashboard/MyOrder';
+import AddReview from './Pages/Dashboard/AddReview';
 
 function App() {
   return (
@@ -24,7 +25,10 @@ function App() {
         <Route path='/SignUp' element={<SignUp></SignUp>}>Login</Route>
         <Route path='/AddProduct' element={<AddProduct></AddProduct>}>Login</Route>
         <Route path='/Cart/:id' element={<ProtractedRoute><Cart></Cart></ProtractedRoute>}>Cart</Route>
-        <Route path='/Dashboard' element={<ProtractedRoute><Dashboard></Dashboard></ProtractedRoute>}>Cart</Route>
+        <Route path='/Dashboard' element={<Dashboard></Dashboard>}>
+          <Route index element={<MyOrder></MyOrder>}></Route>
+          <Route path='addReview' element={<AddReview></AddReview>}></Route>
+        </Route>
        <Route path='/Shop' element={<Shop></Shop>}>Shop</Route>
        <Route path='/About' element={<About></About>}></Route>
       </Routes>
