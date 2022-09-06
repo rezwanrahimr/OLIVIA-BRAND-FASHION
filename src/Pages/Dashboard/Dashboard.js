@@ -8,9 +8,11 @@ const Dashboard = () => {
       <div class="sidebar">
         <Link to='/Dashboard'>MY ORDER</Link>
         <Link to='/Dashboard/AddReview'>ADD REVIEW</Link>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+        <Link to="/Dashboard/MyProfile">MY PROFILE</Link>
+        <Link to="/Dashboard/ManageAllOrders">MANAGE ALL ORDERS</Link>
+        <Link to="/Dashboard/AddProduct">ADD PRODUCTS</Link>
+        <Link to="/Dashboard/MakeAdmin">MAKE ADMIN</Link>
+        <Link to="/Dashboard/ManageAllProducts">MANAGE ALL PRODUCTS</Link>
       </div>
 
       <div class="content">
