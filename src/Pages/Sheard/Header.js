@@ -12,6 +12,7 @@ import auth from '../../firebase.init';
 import {signOut } from 'firebase/auth';
 import Loading from './Loading';
 
+
 const Header = () => {
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
@@ -20,6 +21,7 @@ const Header = () => {
   }
   const logout = () => {
     signOut(auth);
+    localStorage.removeItem('accesToken')
     
 
   };

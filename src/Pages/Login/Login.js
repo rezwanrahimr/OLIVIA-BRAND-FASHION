@@ -7,6 +7,8 @@ import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../Sheard/Loading';
 import { toast } from 'react-toastify';
+import useToken from '../../hooks/UseToken';
+
 
 
 const Login = () => {
@@ -23,13 +25,15 @@ const Login = () => {
     // Sign up with Facebook.
     const [signInWithFacebook, Fuser, Floading, Ferror] = useSignInWithFacebook(auth);
 
+    const [token] =  useToken(user || Guser || Fuser);
+
     if (error) {
         
     }
     if (loading || Gloading || Floading) {
         return <Loading></Loading>
     }
-    if (user || Guser || Fuser) {
+    if (token) {
         navigate('/Home')
     }
 
