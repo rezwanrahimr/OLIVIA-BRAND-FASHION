@@ -5,6 +5,7 @@ import registarImg from '../../images/Login-rafiki.svg'
 import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../Sheard/Loading';
+import useToken from '../../hooks/UseToken';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -19,6 +20,8 @@ const SignUp = () => {
 
     // Sign up with Facebook.
     const [signInWithFacebook, Fuser, Floading, Ferror] = useSignInWithFacebook(auth);
+
+    const [token] =  useToken(user || Guser || Fuser)
    
 
     if (error) {
@@ -27,7 +30,7 @@ const SignUp = () => {
     if (loading || Gloading || Floading) {
         return <Loading></Loading>
     }
-    if (user || Guser || Fuser) {
+    if (token) {
         navigate('/Home')
     }
 

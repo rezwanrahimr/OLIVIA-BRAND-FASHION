@@ -11,7 +11,7 @@ const Shop = () => {
 
     // Load All Products.
     useEffect(() => {
-        fetch(`https://pacific-journey-95029.herokuapp.com/products?page=${selectPage}&size=${productSize}`)
+        fetch(`https://pacific-journey-95029.herokuapp.com/productss?page=${selectPage}&size=${productSize}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [selectPage,productSize]);
