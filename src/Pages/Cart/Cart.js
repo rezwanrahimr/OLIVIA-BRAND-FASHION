@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBRow, MDBCol, MDBBtnGroup, MDBBtn } from 'mdb-react-ui-kit';
 import cart from './cart.css';
+import { toast } from 'react-toastify';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const Cart = () => {
+    const [user, loading, error] = useAuthState(auth);
     const { id } = useParams();
     const [productData, setProductData] = useState([{}]);
     const [cart, setCart] = useState({ ...productData, productQuantity: 1, productTotalPrice: 0 })
-    console.log(productData[0].ProductStock )
+    console.log(productData)
     useEffect(() => {
         fetch(`https://pacific-journey-95029.herokuapp.com/products/${id}`,{
             method:'GET',
@@ -39,6 +43,28 @@ const Cart = () => {
             return;
         }
     }
+    const productQuantity = cart.productQuantity;
+    const CartProductPrice = price;
+    const userName = user?.email;
+    const CartProductName = productData[0].productName;
+    const CartProductImage = productData[0].ProductImage;
+    const CartProductData = {CartProductName,CartProductImage,productQuantity,CartProductPrice,userName}
+    console.log(CartProductData)
+
+    // Payment
+   const handleByeNow = () =>{
+    fetch('http://localhost:5000/payment',{
+        method:'POST',
+        headers:{
+            'content-type':'application/json'
+        },
+        body:JSON.stringify(CartProductData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+    })
+   }
     return (
         <div className='mt-5'>
             <h1 className='text-center text-black fw-bold text-uppercase'>Your cart</h1>
@@ -68,7 +94,7 @@ const Cart = () => {
                                     </MDBBtnGroup>
                                     <MDBCardText>
                                         <div className='checkOutBtn'>
-                                            <button className='text-white'>CHECK OUT</button>
+                                            <button onClick={handleByeNow} className='text-white'>CHECK OUT</button>
                                         </div>
                                     </MDBCardText>
                                 </MDBCardBody>
