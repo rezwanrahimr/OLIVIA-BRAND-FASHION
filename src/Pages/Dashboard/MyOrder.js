@@ -1,6 +1,7 @@
 import { MDBBadge, MDBBtn, MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Sheard/Loading';
 
@@ -63,9 +64,7 @@ const MyOrder = () => {
                 </td>
                 <td>{product.CartProductPrice}</td>
                 <td>
-                  <MDBBtn color='link' rounded size='sm'>
-                    Edit
-                  </MDBBtn>
+               <Link to={`/Dashboard/payment/${product._id}`}> <MDBBtn color="success">Payment</MDBBtn></Link>
                 </td>
                 <td>
                   <MDBBtn color='link' rounded size='sm'>
