@@ -12,7 +12,7 @@ const AddReview = () => {
                         <MDBInput label='Rating' id='form1' type='text' />
                         <MDBTextArea className='my-3' label='Message' id='textAreaExample' rows={4} />
                         <div className='d-flex justify-content-center'>
-                            <MDBBtn className='mx-2' color='info'>
+                            <MDBBtn className='mx-2' color='dark'>
                                 submit
                             </MDBBtn>
                         </div>

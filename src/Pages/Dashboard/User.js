@@ -7,7 +7,7 @@ const User = ({user}) => {
 
 
     const MakeAdmin = () =>{
-        fetch(`http://localhost:5000/user/admin/${email}`,{
+        fetch(`https://pacific-journey-95029.herokuapp.com/user/admin/${email}`,{
             method:'PUT',
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accesToken')}`

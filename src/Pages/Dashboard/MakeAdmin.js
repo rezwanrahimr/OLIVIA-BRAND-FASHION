@@ -5,7 +5,7 @@ import User from './User';
 const MakeAdmin = () => {
     const [users,setUser] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/user',{
+        fetch('https://pacific-journey-95029.herokuapp.com/user',{
             method:'GET',
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accesToken')}`

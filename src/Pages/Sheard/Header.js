@@ -43,7 +43,7 @@ const Header = () => {
               <Link className='text-decoration-none' to="/About"><Nav.Link href="#action2" className='fw-bold text-black'>ABOUT </Nav.Link></Link>
               
               <Nav.Link href="#action2" className='fw-bold text-black'>PAGES </Nav.Link>
-             <Link to='/Dashboard'> <Nav.Link href="/Dashboard" className='fw-bold text-black'>DASHBOARD</Nav.Link></Link>
+             {user && <Link to='/Dashboard'> <Nav.Link href="/Dashboard" className='fw-bold text-black'>DASHBOARD</Nav.Link></Link>}
               <NavDropdown
                 id="nav-dropdown-white-example"
                 title="USER"

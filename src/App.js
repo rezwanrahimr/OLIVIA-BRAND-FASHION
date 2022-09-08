@@ -17,6 +17,7 @@ import MyProfile from './Pages/Dashboard/MyProfile';
 import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
 import MakeAdmin from './Pages/Dashboard/MakeAdmin';
 import ManageAllProducts from './Pages/Dashboard/ManageAllProducts';
+import UpdateProfile from './Pages/Dashboard/UpdateProfile';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         </Route>
        <Route path='/Shop' element={<Shop></Shop>}>Shop</Route>
        <Route path='/About' element={<About></About>}></Route>
+       <Route path='/updateProfile' element={<UpdateProfile></UpdateProfile>}></Route>
       </Routes>
       <ToastContainer />
       

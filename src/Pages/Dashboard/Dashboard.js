@@ -6,7 +6,7 @@ import dashboard from './dashboard.css';
 import useAdmin from '../../hooks/UseAdmin';
 
 const Dashboard = () => {
-  const [user] =  useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
   return (
     <div>
@@ -14,14 +14,14 @@ const Dashboard = () => {
         <Link to='/Dashboard'>MY ORDER</Link>
         <Link to='/Dashboard/AddReview'>ADD REVIEW</Link>
         <Link to="/Dashboard/MyProfile">MY PROFILE</Link>
-        <Link to="/Dashboard/ManageAllOrders">MANAGE ALL ORDERS</Link>
-        <Link to="/Dashboard/AddProduct">ADD PRODUCTS</Link>
+        {admin && <Link to="/Dashboard/ManageAllOrders">MANAGE ALL ORDERS</Link>}
+        {admin && <Link to="/Dashboard/AddProduct">ADD PRODUCTS</Link>}
         {admin && <Link to="/Dashboard/MakeAdmin">MAKE ADMIN</Link>}
-        <Link to="/Dashboard/ManageAllProducts">MANAGE ALL PRODUCTS</Link>
+        {admin && <Link to="/Dashboard/ManageAllProducts">MANAGE ALL PRODUCTS</Link>}
       </div>
 
       <div class="content">
-        <h1>Dahboard</h1>
+       
         <Outlet></Outlet>
       </div>
     </div>
