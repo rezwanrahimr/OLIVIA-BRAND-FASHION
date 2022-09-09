@@ -1,12 +1,32 @@
 import { async } from '@firebase/util';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
-const CheckoutForm = () => {
+const CheckoutForm = ({productInfo}) => {
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('');
+    const [clientSecret, setClientSecret] = useState("");
+    const price = productInfo[0].CartProductPrice;
+    console.log(price)
+
+
+    useEffect(()=>{
+        fetch(`http://localhost:5000/create-payment-intent`,{
+            method:'POST',
+            headers:{
+                'content-type':'application/json',
+                'authorization':`Bearer ${localStorage.getItem('accesToken')}`
+            },
+            body:JSON.stringify({price})
+        })
+        .then(res => res.json())
+        .then(data =>{
+
+        })
+
+    },[price])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -24,16 +44,12 @@ const CheckoutForm = () => {
             type: 'card',
             card
         })
-        if (error) {
-            console.log(error)
-        }
-        else {
-            setCardError('');
-        }
+       
+        setCardError(error?.message || " ");
     }
     return (
 
-        <div class="card w-50">
+       
             <div class="card-body">
             <form  onSubmit={handleSubmit}>
                 <CardElement
@@ -56,8 +72,11 @@ const CheckoutForm = () => {
                     Pay
                 </button>
             </form>
+            {
+                cardError && <p className='text-danger pt-1'>{cardError}</p>
+            }
             </div>
-        </div>
+      
 
 
 
