@@ -2,7 +2,9 @@ import { MDBBadge, MDBBtn, MDBTableBody } from 'mdb-react-ui-kit';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Loading from '../Sheard/Loading';
 import myprofile from './myprofile.css';
 
 const MyProfile = () => {
@@ -10,13 +12,20 @@ const MyProfile = () => {
   const [user, loading, error] = useAuthState(auth);
   const email = user?.email;
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${email}`)
+    fetch(`https://pacific-journey-95029.herokuapp.com/user/${email}`)
       .then(res => res.json())
       .then(data => {
         setUserData(data)
         
       })
   }, [user])
+
+  if(loading){
+    return <Loading></Loading>
+  }
+  if(error){
+    toast.error(error?.message)
+  }
 
   return (
     <div>
@@ -40,7 +49,7 @@ const MyProfile = () => {
                  <p className='text-muted mb-0'>Phone: {user.Number}</p>
                  <p className='text-muted mb-0'>Address: {user.Address}</p>
                  <div>
-                   <Link to={'/updateProfile'}><MDBBtn color="dark">Update</MDBBtn></Link>
+                   <Link to={`/updateProfile/${email}`}><MDBBtn color="dark">Update</MDBBtn></Link>
                  </div>
                </div>
              </div>)

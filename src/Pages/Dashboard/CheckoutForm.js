@@ -10,11 +10,11 @@ const CheckoutForm = ({ product }) => {
     const [success, setSuccess] = useState("");
     const [transitionID, setTransitionID] = useState("");
     const [clientSecret, setClientSecret] = useState("");
-    const { CartProductPrice, CartProductName, userName } = product;
+    const {_id, CartProductPrice, CartProductName, userName } = product;
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/createPayment', {
+        fetch('https://pacific-journey-95029.herokuapp.com/createPayment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -76,6 +76,23 @@ const CheckoutForm = ({ product }) => {
             setTransitionID(paymentIntent.id);
             console.log(paymentIntent);
             setSuccess('Congrats! Your payment is completed.')
+
+            const payment = {
+                card: _id,
+                transationId: paymentIntent.id
+            }
+            fetch(`https://pacific-journey-95029.herokuapp.com/card/${_id}`,{
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body:JSON.stringify(payment)
+            })
+            .then(res => res.json())
+            .then(data => {
+                    console.log(data)
+            })
         }
 
     }
@@ -111,7 +128,7 @@ const CheckoutForm = ({ product }) => {
             {
                 success && <div className='pt-1'>
                     <p className='text-success'>{success}</p>
-                    <span className='text-orange-500'>Your Transition ID: {transitionID}</span>
+                   <p>Your Transition ID: <span className='text-success'>{transitionID}</span></p>
                 </div>
             }
         </div>

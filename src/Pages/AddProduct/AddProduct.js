@@ -16,7 +16,7 @@ const AddProduct = () => {
             const productData = {productName,ProductImage,ProductDescription,ProductPrice,ProductStock,BrandName,DiscountPrice,Discount}
             console.log(productData)
 
-            fetch('http://localhost:5000/products',{
+            fetch('https://pacific-journey-95029.herokuapp.com/products',{
                 method:'POST',
                 headers:{
                     'content-type':'application/json'
@@ -25,6 +25,7 @@ const AddProduct = () => {
             })
             .then(res => res.json())
             .then(data =>{
+                event.target.reset();
                 alert('data added')
             })
     }

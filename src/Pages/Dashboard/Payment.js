@@ -12,7 +12,7 @@ const stripePromise = loadStripe('pk_test_51L3kgcEqztdnHcgkUsXiWYSY6FbMuSHdZZClW
 const Payment = () => {
     const { id } = useParams();
 
-    const url = `http://localhost:5000/card/${id}`;
+    const url = `https://pacific-journey-95029.herokuapp.com/card/${id}`;
 
     const { data: product, isLoading } = useQuery(['card', id], () => fetch(url, {
         method: 'GET',

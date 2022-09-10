@@ -53,7 +53,7 @@ const Cart = () => {
 
     // Payment
    const handleByeNow = () =>{
-    fetch('http://localhost:5000/payment',{
+    fetch('https://pacific-journey-95029.herokuapp.com/payment',{
         method:'POST',
         headers:{
             'content-type':'application/json'
