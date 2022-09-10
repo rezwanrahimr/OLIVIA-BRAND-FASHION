@@ -1,7 +1,9 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React,{useEffect, useState} from 'react';
+import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import Loading from '../Sheard/Loading';
 import CheckoutForm from './CheckoutForm';
 
 // stripe
@@ -9,14 +11,22 @@ const stripePromise = loadStripe('pk_test_51L3kgcEqztdnHcgkUsXiWYSY6FbMuSHdZZClW
 
 const Payment = () => {
     const { id } = useParams();
-    const [productInfo,setProductInfo] = useState([]);
 
-    useEffect(()=>{
-        fetch(`http://localhost:5000/payment/${id}`)
-        .then(res => res.json())
-        .then(data => setProductInfo(data))
-    },[id])
-    console.log(productInfo);
+    const url = `http://localhost:5000/card/${id}`;
+
+    const { data: product, isLoading } = useQuery(['card', id], () => fetch(url, {
+        method: 'GET',
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => res.json()));
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+    console.log(product);
+
     return (
         <div>
             <h1>id: {id}</h1>
@@ -24,7 +34,7 @@ const Payment = () => {
                 <div class="card-body">
 
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm productInfo={productInfo} />
+                        <CheckoutForm product={product} />
                     </Elements>
 
                 </div>
