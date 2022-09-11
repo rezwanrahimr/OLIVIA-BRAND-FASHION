@@ -19,16 +19,16 @@ const MakeAdmin = () => {
             <MDBTable align='middle'>
       <MDBTableHead>
         <tr>
-          <th scope='col'>Name</th>
-          <th scope='col'>Title</th>
-          <th scope='col'>Status</th>
-          <th scope='col'>Position</th>
-          <th scope='col'>Actions</th>
+          <th scope='col' className='fw-bold'>Name</th>
+          <th scope='col' className='fw-bold'>Position</th>
+          <th scope='col' className='fw-bold'>Status</th>
+          <th scope='col' className='fw-bold'>Make Admin</th>
+          <th scope='col' className='fw-bold'>Remove</th>
         </tr>
       </MDBTableHead>
       <MDBTableBody>
         {
-            users.map(user => <User key={user._id} user={user}  ></User>)
+            users.map(user => <User key={user._id} setUser={setUser} user={user}  ></User>)
         }
       </MDBTableBody>
     </MDBTable>
