@@ -87,7 +87,7 @@ const MyOrder = () => {
                   }
                 </td>
                 <td>
-                <MDBBtn rounded color="danger" onClick={() => HandleDelete(product._id)}>Cancle</MDBBtn>
+                <MDBBtn rounded color="danger" onClick={() => HandleDelete(product._id)}>Cancle order</MDBBtn>
                 </td>
               </tr>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Card } from 'react-bootstrap';
 
 const AddProduct = () => {
 
@@ -31,21 +32,34 @@ const AddProduct = () => {
     }
     return (
         <div>
-            <h1>Add Product</h1>
-          <div className='d-flex justify-content-center'>
+        
+    <div  className='d-flex justify-content-center'>
+       
+    <Card style={{ width: '18rem' }}>
+      <Card.Body>
+          <h5 className='text-center my-1 fw-bold'>ADD PRODUCTS</h5>
+      <div className='d-flex justify-content-center'>
           <form onSubmit={handleForm}>
            <input type="text" name='productName' placeholder='Product Name' /><br />
-            <input type="text" name='ProductImage' placeholder='ProductImage' /><br />
+            <input type="text" name='ProductImage' className='my-2' placeholder='ProductImage' /><br />
             <input type="text" name='ProductDescription' placeholder='ProductDescription' /><br />
-            <input type="text" name='ProductPrice' placeholder='ProductPrice' /><br />
+            <input type="text" name='ProductPrice'className='my-2' placeholder='ProductPrice' /><br />
             <input type="text" name='ProductStock' placeholder='ProductStock' /><br />
-            <input type="text" name='BrandName' placeholder='BrandName' /><br />
+            <input type="text" name='BrandName'className='my-2' placeholder='BrandName' /><br />
             <input type="text" name='DiscountPrice' placeholder='DiscountPrice' /><br />
-            <input type="text" name='Discount' placeholder='Discount' /><br />
-            <input type="reset" defaultValue="Reset" />  
-            <button type="submit">submit</button>
+            <input type="text" name='Discount'className='my-2' placeholder='Discount' /><br />
+           <div className='d-flex justify-content-center'>
+           <Button variant="dark" type='submit'>Submit</Button>
+           </div>
            </form>
           </div>
+        
+      </Card.Body>
+      </Card>
+    </div>
+   
+
+          
             
         </div>
     );
