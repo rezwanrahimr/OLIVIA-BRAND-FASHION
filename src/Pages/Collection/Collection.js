@@ -12,10 +12,10 @@ import Footer from '../Sheard/Footer';
 
 const Collection = () => {
     return (
-        <div className='px-5 collectioin'>
+        <div className=' collectioin'>
             <h1 className='fw-bold text-center my-5 display-5 text-black '>Collections</h1>
             <div className='row'>
-                <div className='col-lg-6 '>
+                <div className='col-lg-6 col-sm-12'>
                     <Card className="bg-dark text-white border-0 containeer">
                         <Card.Img  src={col1} alt="Card image" />
                         <Card.ImgOverlay className=' d-flex justify-content-end align-items-center me-3'>
@@ -30,7 +30,7 @@ const Collection = () => {
                         </Card.ImgOverlay>
                     </Card>
                 </div>
-                <div className='col-lg-6'>
+                <div className='col-lg-6 col-sm-12'>
                     <Card className="bg-dark text-white border-0 containeer">
                         <Card.Img  src={col2} alt="Card image" />
                         <Card.ImgOverlay className=' d-flex justify-content-start align-items-center ms-3'>
