@@ -7,7 +7,7 @@ import Loading from '../Sheard/Loading';
 const ManageAllOrders = () => {
     const [orders, setOrder] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/orders', {
+        fetch('https://pacific-journey-95029.herokuapp.com/orders', {
 
         })
             .then(res => res.json())
@@ -20,7 +20,7 @@ const ManageAllOrders = () => {
     const handleDeleteOrder = (id) => {
         const process = window.confirm("Are Your Sure !")
         if (process === true) {
-            fetch(`http://localhost:5000/order/${id}`, {
+            fetch(`https://pacific-journey-95029.herokuapp.com/order/${id}`, {
                 method: 'DELETE',
 
             })

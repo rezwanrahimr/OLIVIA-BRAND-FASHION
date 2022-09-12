@@ -38,7 +38,8 @@ const Header = () => {
               navbarScroll
             >
               <Link className='text-decoration-none' to="/home"><Nav.Link href="/home" className='fw-bold text-black'>HOME</Nav.Link></Link>
-              <Nav.Link href="#action2" className='fw-bold text-black'>COLLECTION </Nav.Link>
+              <Link className='text-decoration-none' to="/Collection"><Nav.Link href="/Collection" className='fw-bold text-black'>COLLECTION </Nav.Link></Link>
+              
               <Link className='text-decoration-none' to="/Shop"> <Nav.Link href="#action2" className='fw-bold text-black'>SHOP </Nav.Link></Link>
               <Link className='text-decoration-none' to="/About"><Nav.Link href="#action2" className='fw-bold text-black'>ABOUT </Nav.Link></Link>
               

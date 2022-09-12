@@ -1,10 +1,11 @@
 import React from 'react';
+import ourService from './ourService.css'
 
 const OurService = () => {
     return (
-        <div className='ms-5 my-5'>
-            <div className='row'>
-                <div className='col-lg-3 col-sm-6'>
+        <div className=' my-5 service py-5'>
+            <div className='row ps-5'>
+                <div className='col-lg-3 col-sm-6 '>
                     <div className='d-flex'>
                     <div>
                         <img src="https://cdn.shopify.com/s/files/1/0263/9501/7288/files/icon1.png?v=1573788718" alt="" />
@@ -43,7 +44,7 @@ const OurService = () => {
                     <div>
                         <img src="https://cdn.shopify.com/s/files/1/0263/9501/7288/files/icon4.png?v=1573788836" alt="" />
                     </div>
-                    <div className='ms-3'>
+                    <div className=''>
                         <h5>24/7 Support</h5>
                         <p>Dedicated support</p>
                     </div>

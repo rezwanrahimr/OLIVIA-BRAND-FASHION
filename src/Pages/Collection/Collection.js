@@ -1,17 +1,21 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
+import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import col1 from '../../images/col1.png';
 import col2 from '../../images/col2.png';
-import womenMan from './womenMan.css';
+import OurService from '../OurService/OurService';
+import Collection3 from './Collection3';
+import collectionn from './collectionn.css';
+import CollectionTwo from './CollectionTwo';
 
-const WomenMen = () => {
+const Collection = () => {
     return (
-        <div className='p-3 '>
+        <div className='px-5 collectioin'>
+            <h1 className='fw-bold text-center my-5 display-5 text-black '>Collections</h1>
             <div className='row'>
                 <div className='col-lg-6 '>
                     <Card className="bg-dark text-white border-0 containeer">
-                        <Card.Img className='imgHover' src={col1} alt="Card image" />
+                        <Card.Img  src={col1} alt="Card image" />
                         <Card.ImgOverlay className=' d-flex justify-content-end align-items-center me-3'>
                             <div>
                                 <h5 className='text-danger font-monospace fw-bold'>WOMEN'S</h5>
@@ -24,9 +28,9 @@ const WomenMen = () => {
                         </Card.ImgOverlay>
                     </Card>
                 </div>
-                <div className='col-lg-6 '>
+                <div className='col-lg-6'>
                     <Card className="bg-dark text-white border-0 containeer">
-                        <Card.Img className='imgHover' src={col2} alt="Card image" />
+                        <Card.Img  src={col2} alt="Card image" />
                         <Card.ImgOverlay className=' d-flex justify-content-start align-items-center ms-3'>
                             <div>
                                 <h5 className='text-danger font-monospace fw-bold'>MEN'S</h5>
@@ -40,8 +44,11 @@ const WomenMen = () => {
                     </Card>
                 </div>
             </div>
+            <CollectionTwo></CollectionTwo>
+            <Collection3></Collection3>
+            <OurService></OurService>
         </div>
     );
 };
 
-export default WomenMen;
+export default Collection;

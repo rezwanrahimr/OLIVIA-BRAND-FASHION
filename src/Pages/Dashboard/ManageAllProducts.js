@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 const ManageAllProducts = () => {
     const [products,setProducts] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/products',{
+        fetch('https://pacific-journey-95029.herokuapp.com/products',{
 
         })
         .then(res => res.json())
@@ -18,7 +18,7 @@ const ManageAllProducts = () => {
     const HandleDelete = ( id) =>{
        const progress =  window.confirm("Are You Sure Delete this Item !");
        if(progress == true){
-        fetch(`http://localhost:5000/product/${id}`,{
+        fetch(`https://pacific-journey-95029.herokuapp.com/product/${id}`,{
             method:'DELETE',
 
         })
@@ -30,6 +30,7 @@ const ManageAllProducts = () => {
        }
 
     }
+    console.log(products)
     return (
         <div>
             <h1>Mangae all orders</h1>
@@ -41,7 +42,7 @@ const ManageAllProducts = () => {
               <th scope='col' className='fw-bold'>STOCK</th>
               <th scope='col' className='fw-bold'>PRICE	</th>
               <th scope='col' className='fw-bold'>DISCOUNT</th>
-              <th scope='col' className='fw-bold'>CANCLE</th>
+              <th scope='col' className='fw-bold'>DELETE</th>
             </tr>
           </MDBTableHead>
           {
@@ -67,9 +68,15 @@ const ManageAllProducts = () => {
                     {product.ProductStock}
                   </MDBBadge>
                 </td>
-                <td className='fw-bold'>{product.ProductPrice}</td>
+                <td className='fw-bold'><MDBBadge color='primary' pill>
+                    {product.ProductPrice}
+                  </MDBBadge></td>
                 <td className='PaymentButton'>
-                  {product.Discount ? <p>{product.Discount}</p>:<p>NO DISCOUNT !</p>}
+                  {product.Discount ? <MDBBadge color='warning' pill>
+                    {product.Discount}
+                  </MDBBadge>:<MDBBadge color='success' pill>
+                    NO DISCOUNT !
+                  </MDBBadge>}
                 </td>
                 <td>
                 <MDBBtn rounded color="danger" onClick={() => HandleDelete(product._id)}>DELETE</MDBBtn>

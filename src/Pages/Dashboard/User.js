@@ -26,7 +26,7 @@ const User = ({ user, setUser }) => {
   // Delete User 
   const HandleDelete = (id) => {
 
-    fetch(`http://localhost:5000/user/${id}`, {
+    fetch(`https://pacific-journey-95029.herokuapp.com/user/${id}`, {
       method: "DELETE"
     })
       .then(res => res.json())

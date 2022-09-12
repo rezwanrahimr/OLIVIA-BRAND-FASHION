@@ -19,6 +19,7 @@ import MakeAdmin from './Pages/Dashboard/MakeAdmin';
 import ManageAllProducts from './Pages/Dashboard/ManageAllProducts';
 import UpdateProfile from './Pages/Dashboard/UpdateProfile';
 import Payment from './Pages/Dashboard/Payment';
+import Collection from './Pages/Collection/Collection';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         </Route>
        <Route path='/Shop' element={<Shop></Shop>}>Shop</Route>
        <Route path='/About' element={<About></About>}></Route>
+       <Route path='/Collection' element={<Collection></Collection>}></Route>
        <Route path='updateProfile/:email' element={<UpdateProfile></UpdateProfile>}></Route>
       </Routes>
       <ToastContainer />

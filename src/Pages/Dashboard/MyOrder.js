@@ -26,7 +26,7 @@ const MyOrder = () => {
 
   // Handle Delete.
   const HandleDelete = id =>{
-    fetch(`http://localhost:5000/order/${id}`,{
+    fetch(`https://pacific-journey-95029.herokuapp.com/order/${id}`,{
       method:'DELETE',
       
     })
@@ -87,7 +87,7 @@ const MyOrder = () => {
                   }
                 </td>
                 <td>
-                <MDBBtn rounded color="danger" onClick={() => HandleDelete(product._id)}>Cancle order</MDBBtn>
+                <MDBBtn rounded color="danger" className={`${product.paid ? 'disabled':''}`}  onClick={() => HandleDelete(product._id)}>Cancle order</MDBBtn>
                 </td>
               </tr>
 

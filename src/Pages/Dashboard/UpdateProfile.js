@@ -16,7 +16,7 @@ const UpdateProfile = () => {
  
 
    const handleUpdateProfile = () =>{
-    fetch(`http://localhost:5000/userDataUpdate/${email}`,{
+    fetch(`https://pacific-journey-95029.herokuapp.com/userDataUpdate/${email}`,{
         method:'PUT',
         headers:{
             'content-type':'application/json'
