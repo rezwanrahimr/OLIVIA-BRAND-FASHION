@@ -4,6 +4,6 @@
 .dropdown-toggle::after{
     display: none !important;
 }
-.navbar-light .navbar-nav .nav-link {
+.nav-link {
     color: black !important;
 }

@@ -28,7 +28,7 @@ const Header = () => {
   };
   return (
     <div className='' style={{ marginTop: 75 }}>
-      <Navbar className='shadow-none bg-body rounded px-3 fixed-top' bg="white" expand="lg">
+      <Navbar className='shadow-none bg-body rounded px-3 fixed-top' bg="white" expand="lg" variant="white">
         <Container fluid>
           <Navbar.Brand href="#"><img className='' src={CompanyLogo} alt="" width='100px' /></Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
