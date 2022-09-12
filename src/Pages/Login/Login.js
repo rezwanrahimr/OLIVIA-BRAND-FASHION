@@ -6,8 +6,8 @@ import { Button } from 'react-bootstrap';
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../Sheard/Loading';
-import { toast } from 'react-toastify';
 import useToken from '../../hooks/UseToken';
+import { toast } from 'react-toastify';
 
 
 
@@ -24,11 +24,10 @@ const Login = () => {
 
     // Sign up with Facebook.
     const [signInWithFacebook, Fuser, Floading, Ferror] = useSignInWithFacebook(auth);
-
-    const [token] =  useToken(user || Guser || Fuser);
+    const [token] = useToken(user || Guser || Fuser);
 
     if (error) {
-        
+        toast.error(error.message);
     }
     if (loading || Gloading || Floading) {
         return <Loading></Loading>
@@ -38,52 +37,47 @@ const Login = () => {
     }
 
     return (
-        <div className="containerr" >
-            <div class="forms-container">
-                <div class="signin-signup">
-                    <form action="#" class="formControl sign-in-form">
-                        <h2 class="title">SIGN IN</h2>
-                        <div class="input-field">
-                            <i class="fas fa-user"></i>
-                            <input name='email' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Username" />
-                        </div>
-                        <div class="input-field">
-                            <i class="fas fa-lock"></i>
-                            <input name='password' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
-                        </div>
-                        {
-                           error || Gerror || Ferror? <p className='text-danger'>{error.message || Gerror.message || Ferror.message}</p> : ''
-                        }
-                        <Button className='px-5' variant="outline-primary" onClick={() => signInWithEmailAndPassword(email, password)}>LOGIN</Button>{' '}
-                        <p class="social-text">Or Sign in with social platforms</p>
-                        <div class="social-media">
-                            <a href="#" onClick={()=> signInWithFacebook(email,password)} class="social-icon">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-google"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </div>
-                    </form>
+        <div>
+            <div className='row'>
+                <div className='col-lg-6 col-sm-10 Image d-flex justify-content-center'>
+                    <img src={IMG} width="100%" alt="" />
                 </div>
-            </div>
-
-            <div class="panels-container">
-                <div class="panel left-panel">
-                    <div class="content">
-                        <h3>NOT MEMBER? BECOME ON TODAY</h3>
-                        <p>
-                            CREATE A NEW ACCOUNT. ONCE YOU VE SET IT UP YOU CAN TAKE ADVANTAGE OF MANY BENEFITS OF MEMBERSHIP.
-                        </p>
-                        <Link to='/signUP'><Button class="LoginButtontransparent" id="sign-up-btn" variant="primary">SIGN-UP</Button>{' '}</Link>
+                <div className='col-lg-6 col-sm-10'>
+                    <div class="forms-container mt-5">
+                        <div class="signin-signup">
+                            <form action="#" class="formControl sign-in-form">
+                                <h2 class="title">SIGN IN</h2>
+                                <div class="input-field">
+                                    <i class="fas fa-user"></i>
+                                    <input name='email' value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Username" />
+                                </div>
+                                <div class="input-field">
+                                    <i class="fas fa-lock"></i>
+                                    <input name='password' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
+                                </div>
+                                {
+                                    error || Gerror || Ferror ? <p className='text-danger'>{error.message || Gerror.message || Ferror.message}</p> : ''
+                                }
+                                <Button className='px-5' variant="outline-primary" onClick={() => signInWithEmailAndPassword(email, password)}>LOGIN</Button>{' '}
+                                <p class="social-text">Create Account : <Link to={'/SignUp'}>SIGN-UP</Link></p>
+                                <div class="social-media">
+                                    <a href="#" onClick={() => signInWithFacebook(email, password)} class="social-icon">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" onClick={() => signInWithGoogle(email, password)} class="social-icon">
+                                        <i class="fab fa-google"></i>
+                                    </a>
+                                    <a href="#" class="social-icon">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <img src={IMG} class="image" alt="" />
+
                 </div>
             </div>
         </div>

@@ -16,44 +16,44 @@ const MyProfile = () => {
       .then(res => res.json())
       .then(data => {
         setUserData(data)
-        
+
       })
   }, [user])
 
-  if(loading){
+  if (loading) {
     return <Loading></Loading>
   }
-  if(error){
+  if (error) {
     toast.error(error?.message)
   }
 
   return (
     <div>
       <h1 className='text-center my-3'>MY PROFILE</h1>
-      <div className='profileContent d-flex justify-content-center mt-5'>
+      <div className='profileContent d-flex justify-content-center mt-5 col-sm-12'>
         <MDBTableBody>
           <tr>
             <td>
-             {
-               userData.map(user =>  <div key={user._id} className='d-flex align-items-center '>
-               <img
-                 src={user.Image}
-                 alt=''
-                 style={{ width: '95px', height: '95px' }}
-                 className='rounded-circle'
-               />
+              {
+                userData.map(user => <div key={user._id} className='d-flex align-items-center '>
+                  <img
+                    src={user.Image}
+                    alt=''
+                    style={{ width: '95px', height: '95px' }}
+                    className='rounded-circle'
+                  />
 
-               <div className='ms-3'>
-                 <p className='fw-bold mb-1'>Name: {user.Name}</p>
-                 <p className='text-muted mb-0'>Email: {user.email}</p>
-                 <p className='text-muted mb-0'>Phone: {user.Number}</p>
-                 <p className='text-muted mb-0'>Address: {user.Address}</p>
-                 <div>
-                   <Link to={`/updateProfile/${email}`}><MDBBtn color="dark">Update</MDBBtn></Link>
-                 </div>
-               </div>
-             </div>)
-             }
+                  <div className='ms-3'>
+                    <p className='fw-bold mb-1'>Name: {user.Name}</p>
+                    <p className='text-muted mb-0'>Email: {user.email}</p>
+                    <p className='text-muted mb-0'>Phone: {user.Number}</p>
+                    <p className='text-muted mb-0'>Address: {user.Address}</p>
+                    <div>
+                      <Link to={`/updateProfile/${email}`}><MDBBtn color="dark">Update</MDBBtn></Link>
+                    </div>
+                  </div>
+                </div>)
+              }
             </td>
           </tr>
 
