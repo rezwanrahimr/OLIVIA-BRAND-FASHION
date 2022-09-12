@@ -11,6 +11,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import {signOut } from 'firebase/auth';
 import Loading from './Loading';
+import header from './header.css';
 
 
 const Header = () => {
@@ -43,7 +44,22 @@ const Header = () => {
               <Link className='text-decoration-none' to="/Shop"> <Nav.Link href="#action2" className='fw-bold text-black'>SHOP </Nav.Link></Link>
               <Link className='text-decoration-none' to="/About"><Nav.Link href="#action2" className='fw-bold text-black'>ABOUT </Nav.Link></Link>
               
-              <Nav.Link href="#action2" className='fw-bold text-black'>PAGES </Nav.Link>
+              <NavDropdown
+                id="nav-dropdown-white-example"
+                title="PAGES"
+                menuVariant="white"
+                className='fw-bold text-black'
+              >
+                 <Link className='text-decoration-none' to="/About"><NavDropdown.Item href="/Login">About Us</NavDropdown.Item></Link>
+
+                 <Link className='text-decoration-none' to="/About"><NavDropdown.Item href="/Login">Contact Us</NavDropdown.Item></Link>
+
+                 <Link className='text-decoration-none mt-2' to="/About"><NavDropdown.Item href="/Login">FAQs</NavDropdown.Item></Link>
+               
+                 <Link className='text-decoration-none mt-2' to="/About"><NavDropdown.Item href="/Login">Coming Soon</NavDropdown.Item></Link>
+               
+
+              </NavDropdown>
              {user && <Link to='/Dashboard'> <Nav.Link href="/Dashboard" className='fw-bold text-black'>DASHBOARD</Nav.Link></Link>}
               <NavDropdown
                 id="nav-dropdown-white-example"

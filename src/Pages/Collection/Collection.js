@@ -7,6 +7,8 @@ import OurService from '../OurService/OurService';
 import Collection3 from './Collection3';
 import collectionn from './collectionn.css';
 import CollectionTwo from './CollectionTwo';
+import Subscribe from '../Subscribe/Subscribe';
+import Footer from '../Sheard/Footer';
 
 const Collection = () => {
     return (
@@ -47,6 +49,8 @@ const Collection = () => {
             <CollectionTwo></CollectionTwo>
             <Collection3></Collection3>
             <OurService></OurService>
+            <Subscribe></Subscribe>
+            <Footer></Footer>
         </div>
     );
 };

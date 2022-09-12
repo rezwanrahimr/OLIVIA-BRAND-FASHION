@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import OurService from '../OurService/OurService';
+import Footer from '../Sheard/Footer';
+import Subscribe from '../Subscribe/Subscribe';
 import shop from './shop.css';
 
 const Shop = () => {
@@ -81,6 +84,8 @@ const Shop = () => {
            
            </div>
            
+           <Subscribe></Subscribe>
+           <Footer></Footer>
         </div>
     );
 };

@@ -1,0 +1,9 @@
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+.dropdown-toggle::after{
+    display: none !important;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: black !important;
+}

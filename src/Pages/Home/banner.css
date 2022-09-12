@@ -1,6 +1,5 @@
 .HeaderText{
     cursor: pointer;
-    
 }
 .HeaderText:hover{
     animation: bounce 1s linear;
@@ -19,3 +18,15 @@
         transform: translateY(-4px);
     }
 }
+
+@media screen and (max-width:480px) {
+    .HeaderText h5{
+        font-size: x-small !important;
+    }
+    .HeaderText h1{
+        font-size: large !important;
+    }
+    .HeaderText button{
+       margin: 0px !important;
+    }
+  }
