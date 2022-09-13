@@ -24,10 +24,16 @@ const Cart = () => {
 
     }, [id])
 
+    if(loading){
+        return <loading></loading>
+    }
+    if(error){
+        return toast.error(error.message);
+    }
 
 
     // Product Total Price.
-    const productPrice = productData[0].ProductPrice;
+    const productPrice = productData[0]?.ProductPrice;
     const price = parseInt(productPrice) * parseInt(cart.productQuantity);
 
 
@@ -43,11 +49,11 @@ const Cart = () => {
             return;
         }
     }
-    const productQuantity = cart.productQuantity;
+    const productQuantity = cart?.productQuantity;
     const CartProductPrice = price;
     const userName = user?.email;
-    const CartProductName = productData[0].productName;
-    const CartProductImage = productData[0].ProductImage;
+    const CartProductName = productData[0]?.productName;
+    const CartProductImage = productData[0]?.ProductImage;
     const CartProductData = {CartProductName,CartProductImage,productQuantity,CartProductPrice,userName}
     console.log(CartProductData)
 
@@ -70,14 +76,14 @@ const Cart = () => {
             <h1 className='text-center text-black fw-bold text-uppercase'>Your cart</h1>
             <div className='d-flex justify-content-center align-items-center'>
                 {
-                    productData.map(product => <MDBCard key={product._id} style={{ maxWidth: '740px' }}>
+                    productData?.map(product => <MDBCard key={product?._id} style={{ maxWidth: '740px' }}>
                         <MDBRow className='g-0'>
                             <MDBCol className='d-flex' md='4'>
-                                <MDBCardImage src={product.ProductImage} alt='...' fluid />
+                                <MDBCardImage src={product?.ProductImage} alt='...' fluid />
                             </MDBCol>
                             <MDBCol md='8'>
                                 <MDBCardBody>
-                                    <MDBCardTitle className='text-uppercase'>{product.productName}</MDBCardTitle>
+                                    <MDBCardTitle className='text-uppercase'>{product?.productName}</MDBCardTitle>
                                     <MDBCardText>
                                         <p className='productDec'>The Beauty is in the name.Wear this rakish grey plaid jacket and all will know that you are the Boss.Named after the 3 time Melboume Cup winning champion Jacket of Makybe Diva,Glen,Boss,Featuring a notch lapel and made from perminum super 130%s 100% wool.</p>
                                         -Length:109cm <br />
@@ -89,7 +95,7 @@ const Cart = () => {
                                     </MDBCardText>
                                     <MDBBtnGroup shadow='0'>
                                         <MDBBtn className='fw-bold fs-4' color='light' onClick={() => handleProductQuantity('remove')}>-</MDBBtn>
-                                        <MDBBtn color='light'><input type="number" name="productQuantity" value={cart.productQuantity || 1} id="" /></MDBBtn>
+                                        <MDBBtn color='light'><input type="number" name="productQuantity" value={cart?.productQuantity || 1} id="" /></MDBBtn>
                                         <MDBBtn className=' fs-4' color='light' onClick={() => handleProductQuantity('add')}>+</MDBBtn>
                                     </MDBBtnGroup>
                                     <MDBCardText>

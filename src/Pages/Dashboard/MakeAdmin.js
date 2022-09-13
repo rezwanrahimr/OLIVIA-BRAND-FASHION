@@ -28,7 +28,7 @@ const MakeAdmin = () => {
       </MDBTableHead>
       <MDBTableBody>
         {
-            users.map(user => <User key={user._id} setUser={setUser} user={user}  ></User>)
+            users?.map(user => <User key={user?._id} setUser={setUser} user={user}  ></User>)
         }
       </MDBTableBody>
     </MDBTable>
