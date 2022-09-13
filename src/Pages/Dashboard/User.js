@@ -12,7 +12,7 @@ const User = ({ user, setUser }) => {
     fetch(`https://pacific-journey-95029.herokuapp.com/user/admin/${email}`, {
       method: 'PUT',
       headers: {
-        authorization: `Bearer ${localStorage.getItem('accesToken')}`
+        'content-type':'application/json'
       }
     })
       .then(res => res.json())
@@ -55,7 +55,7 @@ const User = ({ user, setUser }) => {
         </td>
         <td>
           {
-            role == 'admin' && <p className='fw-bold '><MDBBadge color='primary' pill>
+           role == 'admin' && <p className='fw-bold '><MDBBadge color='primary' pill>
               Admin
             </MDBBadge></p>
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBRow, MDBCol, MDBBtnGroup, MDBBtn } from 'mdb-react-ui-kit';
 import cart from './cart.css';
 import { toast } from 'react-toastify';
@@ -100,7 +100,7 @@ const Cart = () => {
                                     </MDBBtnGroup>
                                     <MDBCardText>
                                         <div className='checkOutBtn'>
-                                            <button onClick={handleByeNow} className='text-white'>CHECK OUT</button>
+                                            <Link to="/Dashboard"><button onClick={handleByeNow} className='text-white'>CHECK OUT</button></Link>
                                         </div>
                                     </MDBCardText>
                                 </MDBCardBody>
