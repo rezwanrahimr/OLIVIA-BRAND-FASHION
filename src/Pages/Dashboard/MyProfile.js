@@ -26,6 +26,7 @@ const MyProfile = () => {
   if (error) {
     toast.error(error?.message)
   }
+ 
 
   return (
     <div>
@@ -49,7 +50,7 @@ const MyProfile = () => {
                     <p className='text-muted mb-0'>Phone: {user.Number}</p>
                     <p className='text-muted mb-0'>Address: {user.Address}</p>
                     <div>
-                      <Link to={`/updateProfile/${email}`}><MDBBtn color="dark">Update</MDBBtn></Link>
+                      <Link to={`/updateProfile/${user._id}`}><MDBBtn color="dark">Update</MDBBtn></Link>
                     </div>
                   </div>
                 </div>)

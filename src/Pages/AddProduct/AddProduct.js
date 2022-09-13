@@ -15,7 +15,7 @@ const AddProduct = () => {
             const Discount = event.target.Discount.value;
 
             const productData = {productName,ProductImage,ProductDescription,ProductPrice,ProductStock,BrandName,DiscountPrice,Discount}
-            console.log(productData)
+           
 
             fetch('https://pacific-journey-95029.herokuapp.com/products',{
                 method:'POST',

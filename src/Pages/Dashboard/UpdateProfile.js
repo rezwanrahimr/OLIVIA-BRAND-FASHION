@@ -5,18 +5,17 @@ import { toast } from 'react-toastify';
 
 
 const UpdateProfile = () => {
-    const navigate = useNavigate();
     const [Name, setName] = useState("");
     const [Number, setNumber] = useState("");
     const [Address, setAddress] = useState("");
     const [Image, setImage] = useState("");
     const ProfileData = { Name, Number, Address, Image }
-    const { email } = useParams();
-    console.log('email', ProfileData)
+    const { id } = useParams();
 
 
-    const handleUpdateProfile = () => {
-        fetch(`https://pacific-journey-95029.herokuapp.com/userDataUpdate/${email}`, {
+
+    const handleUpdateProfile = (id) => {
+        fetch(`https://pacific-journey-95029.herokuapp.com/userDataUpdate/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -25,10 +24,11 @@ const UpdateProfile = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data) {
-                    toast.success('Profile Update')
-                }
-            }, [email])
+                
+                // if (data) {
+                //     toast.success('Profile Update')
+                // }
+            }, [id])
     }
 
 
@@ -44,7 +44,7 @@ const UpdateProfile = () => {
                         <MDBInput label='Number' name='Number' onChange={(e) => setNumber(e.target.value)} className='my-3' id='form1' type='number' />
                         <MDBInput label='Address' name='Address' onChange={(e) => setAddress(e.target.value)} id='form1' type='text' />
                         <MDBInput label='Image' className='my-3' name='Image' onClick={(e) => setImage(e.target.value)} id='form1' type='text' />
-                        <MDBBtn color="dark" className='my-3' onClick={handleUpdateProfile}>submit</MDBBtn>
+                        <MDBBtn color="dark" className='my-3' onClick={() => handleUpdateProfile(id)}>submit</MDBBtn>
                     </form>
                 </MDBCardBody>
             </MDBCard>

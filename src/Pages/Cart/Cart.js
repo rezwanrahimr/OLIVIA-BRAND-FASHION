@@ -11,7 +11,6 @@ const Cart = () => {
     const { id } = useParams();
     const [productData, setProductData] = useState([{}]);
     const [cart, setCart] = useState({ ...productData, productQuantity: 1, productTotalPrice: 0 })
-    console.log(productData)
     useEffect(() => {
         fetch(`https://pacific-journey-95029.herokuapp.com/products/${id}`,{
             method:'GET',
@@ -40,7 +39,7 @@ const Cart = () => {
     // Product Quantity.
     const handleProductQuantity = (type) => {
         if (type === "add" && cart.productQuantity < productData[0].ProductStock) {
-            console.log('add')
+         
             setCart({ ...cart, productQuantity: Number(cart.productQuantity) + 1 });
             return;
         }
@@ -55,7 +54,7 @@ const Cart = () => {
     const CartProductName = productData[0]?.productName;
     const CartProductImage = productData[0]?.ProductImage;
     const CartProductData = {CartProductName,CartProductImage,productQuantity,CartProductPrice,userName}
-    console.log(CartProductData)
+  
 
     // Payment
    const handleByeNow = () =>{
@@ -68,7 +67,7 @@ const Cart = () => {
     })
     .then(res => res.json())
     .then(data => {
-        console.log(data);
+        
     })
    }
     return (

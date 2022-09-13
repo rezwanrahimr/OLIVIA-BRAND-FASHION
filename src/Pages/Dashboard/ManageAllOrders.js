@@ -14,7 +14,7 @@ const ManageAllOrders = () => {
             .then(data => setOrder(data));
     }, [])
 
-    console.log();
+  
 
     // Delete Order
     const handleDeleteOrder = (id) => {

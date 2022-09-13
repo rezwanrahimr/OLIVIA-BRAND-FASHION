@@ -25,13 +25,12 @@ const Payment = () => {
         return <Loading></Loading>
     }
 
-    console.log(product);
 
     return (
         <div>
             <h1>id: {id}</h1>
-            <div class="card w-100 d-flex justify-content-center">
-                <div class="card-body">
+            <div className="card w-100 d-flex justify-content-center">
+                <div className="card-body">
 
                     <Elements stripe={stripePromise}>
                         <CheckoutForm product={product} />

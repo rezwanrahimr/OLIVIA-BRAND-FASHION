@@ -74,7 +74,7 @@ const CheckoutForm = ({ product }) => {
         else {
             setCardError('');
             setTransitionID(paymentIntent.id);
-            console.log(paymentIntent);
+           
             setSuccess('Congrats! Your payment is completed.')
 
             const payment = {
@@ -91,7 +91,7 @@ const CheckoutForm = ({ product }) => {
             })
             .then(res => res.json())
             .then(data => {
-                    console.log(data)
+                   
             })
         }
 
@@ -100,7 +100,7 @@ const CheckoutForm = ({ product }) => {
     return (
 
 
-        <div class="card-body">
+        <div className="card-body">
             <form onSubmit={handleSubmit}>
                 <CardElement
                     options={{

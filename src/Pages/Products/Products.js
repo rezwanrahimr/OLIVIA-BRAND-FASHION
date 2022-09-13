@@ -18,39 +18,39 @@ const Products = () => {
             <div className='AllProducts'>
             {
                 product.slice(0,12).map(products => <div key={products._id}>
-                        <div class="product-items"> <div class="product">
-                            <div class="product-content">
-                                <div class="product-img">
+                        <div className="product-items"> <div className="product">
+                            <div className="product-content">
+                                <div className="product-img">
                                     <img className='w-100' src={products.ProductImage} alt="product image" />
                                 </div>
-                                <div class="product-btns">
-                                    <button type="button" class="btn-cart"> add to cart
-                                        <span><i class="fas fa-plus"></i></span>
+                                <div className="product-btns">
+                                    <button type="button" className="btn-cart"> add to cart
+                                        <span><i className="fas fa-plus"></i></span>
                                     </button>
-                                    <Link to={`/Cart/${products._id}`}><button type="button" class="btn-buy"> buy now
-                                        <span><i class="fas fa-shopping-cart"></i></span>
+                                    <Link to={`/Cart/${products._id}`}><button type="button" className="btn-buy"> buy now
+                                        <span><i className="fas fa-shopping-cart"></i></span>
                                     </button></Link>
                                 </div>
                             </div>
 
-                            <div class="product-info">
-                                <div class="product-info-top">
-                                    <h2 class="sm-title">{products.BrandName}</h2>
-                                    <div class="rating">
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="far fa-star"></i></span>
+                            <div className="product-info">
+                                <div className="product-info-top">
+                                    <h2 className="sm-title">{products.BrandName}</h2>
+                                    <div className="rating">
+                                        <span><i className="fas fa-star"></i></span>
+                                        <span><i className="fas fa-star"></i></span>
+                                        <span><i className="fas fa-star"></i></span>
+                                        <span><i className="fas fa-star"></i></span>
+                                        <span><i className="far fa-star"></i></span>
                                     </div>
                                 </div>
-                                <a href="#" class="product-name">{products.productName}</a>
-                                <p class="product-price">{products.DiscountPrice}</p>
-                                <p class="product-price">{products.ProductPrice}</p>
+                                <a href="#" className="product-name">{products.productName}</a>
+                                <p className="product-price">{products.DiscountPrice}</p>
+                                <p className="product-price">{products.ProductPrice}</p>
                             </div>
 
-                            <div class="off-info">
-                                <h2 class={products.Discount ? 'sm-title':''}>{products.Discount}</h2>
+                            <div className="off-info">
+                                <h2 className={products.Discount ? 'sm-title':''}>{products.Discount}</h2>
                             </div>
                         </div></div>
                     </div>

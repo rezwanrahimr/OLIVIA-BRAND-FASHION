@@ -22,7 +22,6 @@ const MyOrder = () => {
   if (loading) {
     return <Loading></Loading>
   }
-  console.log(products)
 
   // Handle Delete.
   const HandleDelete = id =>{

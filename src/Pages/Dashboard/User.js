@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 
 const User = ({ user, setUser }) => {
   const { Name, email, role, Image, Address, _id } = user;
-  console.log(user);
 
 
   const MakeAdmin = () => {

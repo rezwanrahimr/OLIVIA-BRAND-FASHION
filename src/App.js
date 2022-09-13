@@ -44,7 +44,7 @@ function App() {
        <Route path='/Shop' element={<Shop></Shop>}>Shop</Route>
        <Route path='/About' element={<About></About>}></Route>
        <Route path='/Collection' element={<Collection></Collection>}></Route>
-       <Route path='updateProfile/:email' element={<UpdateProfile></UpdateProfile>}></Route>
+       <Route path='updateProfile/:id' element={<UpdateProfile></UpdateProfile>}></Route>
       </Routes>
       <ToastContainer />
       

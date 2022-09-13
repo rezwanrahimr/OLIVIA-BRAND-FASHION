@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [admin] = useAdmin(user);
   return (
     <div>
-      <div class="sidebar">
+      <div className="sidebar">
         <Link to='/Dashboard'>MY ORDER</Link>
         <Link to='/Dashboard/AddReview'>ADD REVIEW</Link>
         <Link to="/Dashboard/MyProfile">MY PROFILE</Link>
@@ -20,7 +20,7 @@ const Dashboard = () => {
         {admin && <Link to="/Dashboard/ManageAllProducts">MANAGE ALL PRODUCTS</Link>}
       </div>
 
-      <div class="content">
+      <div className="content">
        
         <Outlet></Outlet>
       </div>
