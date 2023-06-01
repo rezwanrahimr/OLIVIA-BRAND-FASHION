@@ -1,0 +1,28 @@
+.modal {
+  padding: 0 !important;
+}
+.modal .modal-dialog {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+}
+.modal .modal-content {
+  height: auto;
+  border: 0;
+  border-radius: 0;
+}
+.modal .modal-body {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0px 40px 0px;
+}
+
+@media only screen and (max-width: 600px) {
+  .modal .modal-body {
+    padding: 0;
+  }
+  .modal .modal-body > form {
+    width: 100%;
+  }
+}

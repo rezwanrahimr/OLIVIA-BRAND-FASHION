@@ -5,7 +5,7 @@ const useAdmin = user =>{
     useEffect(()=>{
         const email = user?.email;
         if(email){
-            fetch(`https://pacific-journey-95029.herokuapp.com/admin/${email}`,{
+            fetch(`https://olivia-brand-fashion-backend.vercel.app/admin/${email}`,{
                 method:'GET',
                 headers:{
                     'content-type':'application/json',
