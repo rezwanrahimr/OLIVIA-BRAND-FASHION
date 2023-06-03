@@ -1,32 +1,58 @@
-.HeaderText{
-    cursor: pointer;
+.banner-container {
+  margin-top: 100px;
 }
-.HeaderText:hover{
-    animation: bounce 1s linear;
-}
-@keyframes bounce{
-    20%,50%,80%,to{
-        transform: translateY(0);
-    }
-    40%{
-        transform: translateY(-30px);
-    }
-    70%{
-        transform: translateY(-15px);
-    }
-    90%{
-        transform: translateY(-4px);
-    }
+.carousel-content {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
-@media screen and (max-width:480px) {
-    .HeaderText h5{
-        font-size: x-small !important;
-    }
-    .HeaderText h1{
-        font-size: large !important;
-    }
-    .HeaderText button{
-       margin: 0px !important;
-    }
+.carousel-content div h2 {
+  color: #ffffff !important;
+  font-size: 40px;
+  line-height: 40px;
+}
+.carousel-content div button {
+  width: 125px;
+  height: 37px;
+  border-radius: none;
+  color: white;
+  background-color: black;
+}
+.HeaderText {
+  cursor: pointer;
+}
+.HeaderText:hover {
+  animation: bounce 1s linear;
+}
+@keyframes bounce {
+  20%,
+  50%,
+  80%,
+  to {
+    transform: translateY(0);
   }
+  40% {
+    transform: translateY(-30px);
+  }
+  70% {
+    transform: translateY(-15px);
+  }
+  90% {
+    transform: translateY(-4px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .HeaderText h5 {
+    font-size: x-small !important;
+  }
+  .HeaderText h1 {
+    font-size: large !important;
+  }
+  .HeaderText button {
+    margin: 0px !important;
+  }
+}

@@ -16,6 +16,7 @@ import { useState } from "react";
 import SearchModal from "./SearchModal/SearchModal";
 import { useContext } from "react";
 import { authContext } from "../../context/AuthContext";
+import OfferHeader from "./OfferHeader/OfferHeader";
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
@@ -40,9 +41,11 @@ const Header = () => {
   };
 
   return (
-    <div className="" style={{ marginTop: 75 }}>
+    <div className="fixed-top">
+      <OfferHeader></OfferHeader>
       <Navbar
-        className="shadow-none bg-body rounded px-3 fixed-top"
+        //
+        className="shadow-none bg-body rounded px-3 "
         bg="white"
         expand="lg"
         variant="white"
