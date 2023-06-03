@@ -14,18 +14,26 @@ import Loading from "./Loading";
 import header from "./header.css";
 import { useState } from "react";
 import SearchModal from "./SearchModal/SearchModal";
+import { useContext } from "react";
+import { authContext } from "../../context/AuthContext";
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
+  const { user, isLoading, handleSignOut } = useContext(authContext);
   const navigate = useNavigate();
-  const [user, loading] = useAuthState(auth);
-  if (loading) {
+
+  if (isLoading) {
     return <Loading></Loading>;
   }
-  const logout = () => {
-    signOut(auth);
-    localStorage.removeItem("accesToken");
+
+  const handleLogOut = () => {
+    handleSignOut()
+      .then(() => {
+        localStorage.removeItem("tokne");
+      })
+      .catch((error) => {});
   };
+
   // Modal
   const handleOpenModal = () => {
     setShowModal(true);
@@ -78,11 +86,38 @@ const Header = () => {
               <i class="fa-solid fa-magnifying-glass fa-lg"></i>
             </Nav.Link>
 
-            <Link className="text-decoration-none" to="/About">
-              <Nav.Link href="#action2" className="fw-bold text-black">
+            <div class="dropdown">
+              <span
+                class=" dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 <i class="fa-regular fa-user fa-lg"></i>
-              </Nav.Link>
-            </Link>
+              </span>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                {user?.email ? (
+                  <>
+                    <li>
+                      <Link to="/login" onClick={handleLogOut}>
+                        Sign out
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="Dashboard">Dashboard</Link>
+                    </li>
+                    <li>
+                      <Link to="/Dashboard/MyProfile">Profile</Link>
+                    </li>
+                  </>
+                ) : (
+                  <li>
+                    <Link to="/login">Login</Link>
+                  </li>
+                )}
+              </ul>
+            </div>
             <Link className="text-decoration-none" to="/About">
               <Nav.Link href="#action2" className="fw-bold text-black">
                 <span type="" class="position-relative">

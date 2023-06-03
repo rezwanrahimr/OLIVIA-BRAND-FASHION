@@ -9,6 +9,7 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import SearchContext from "./context/SearchContext";
+import AuthContext from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const queryClient = new QueryClient();
@@ -17,7 +18,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <SearchContext>
-          <App />
+          <AuthContext>
+            <App />
+          </AuthContext>
         </SearchContext>
       </BrowserRouter>
     </QueryClientProvider>
