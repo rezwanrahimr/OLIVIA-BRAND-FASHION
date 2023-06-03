@@ -19,7 +19,6 @@ const SearchModal = ({ showModal, setShowModal }) => {
     }
   };
 
-  console.log(searchText);
   return (
     <div>
       <Modal show={showModal} className="w-100 test-modal">

@@ -1,27 +1,22 @@
 import React from "react";
-import { NavDropdown } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CompanyLogo from "../../images/companyLogo.png";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
-import { signOut } from "firebase/auth";
 import Loading from "./Loading";
-import header from "./header.css";
+import "./header.css";
 import { useState } from "react";
 import SearchModal from "./SearchModal/SearchModal";
 import { useContext } from "react";
 import { authContext } from "../../context/AuthContext";
 import OfferHeader from "./OfferHeader/OfferHeader";
+import { Searchcontext } from "../../context/SearchContext";
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const { user, isLoading, handleSignOut } = useContext(authContext);
-  const navigate = useNavigate();
+  const { cartQuantity } = useContext(Searchcontext);
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -126,7 +121,7 @@ const Header = () => {
                 <span type="" class="position-relative">
                   <i class="fa-solid fa-bag-shopping fa-lg "></i>
                   <span class="position-absolute text-success top-0 start-100 translate-middle badge ">
-                    99+
+                    {cartQuantity}
                     <span class="visually-hidden">unread messages</span>
                   </span>
                 </span>

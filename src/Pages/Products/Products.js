@@ -1,15 +1,40 @@
-import React, { useEffect } from "react";
-import product from "./products.css";
+import React, { useContext, useEffect } from "react";
+import "./products.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Searchcontext } from "../../context/SearchContext";
 
 const Products = () => {
+  const { setCallLocalStorage } = useContext(Searchcontext);
   const [product, setProduct] = useState([]);
+  const [productArray, setProductArray] = useState([
+    localStorage.getItem("productsId"),
+  ]);
   useEffect(() => {
     fetch("https://olivia-brand-fashion-backend.vercel.app/products")
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
+
+  // Handle Add To Cart
+
+  const handleAddToCart = (_id) => {
+    const getLocalStorageItems = JSON.parse(localStorage.getItem("productsId"));
+    const check = getLocalStorageItems?.find((item) => item == _id);
+    if (!check) {
+      const productsArray = [...productArray];
+      if (productsArray[0] == null) {
+        productsArray[0] = _id;
+      } else {
+        productsArray.push(_id);
+      }
+      setProductArray(productsArray);
+      const productsId = JSON.stringify(productsArray);
+      localStorage.setItem("productsId", productsId);
+      setCallLocalStorage(_id);
+    }
+  };
+
   return (
     <section id="mySection">
       <div className=" mt-5">
@@ -31,7 +56,11 @@ const Products = () => {
                       />
                     </div>
                     <div className="product-btns">
-                      <button type="button" className="btn-cart">
+                      <button
+                        type="button"
+                        className="btn-cart"
+                        onClick={() => handleAddToCart(products._id)}
+                      >
                         {" "}
                         add to cart
                         <span>

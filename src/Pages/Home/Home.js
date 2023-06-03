@@ -8,6 +8,7 @@ import WomenMen from "../WomenMen/WomenMen";
 import Banner from "./Banner";
 import home from "./home.css";
 import BackgroundVideo from "../BackgrounVideo/BackgroundVideo";
+import LogoSlider from "../LogoSlider/LogoSlider";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <WomenMen></WomenMen>
       <Products></Products>
       <BackgroundVideo></BackgroundVideo>
+      <LogoSlider></LogoSlider>
       <Blogs></Blogs>
       <OurService></OurService>
       <Subscribe></Subscribe>
