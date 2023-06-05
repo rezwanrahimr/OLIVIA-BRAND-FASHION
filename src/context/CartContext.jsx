@@ -10,9 +10,7 @@ const CartContext = ({ children }) => {
   //   Cart Items from Local Storage
   const [cartItems, setCartItems] = useState([]);
   //  Cart Product State
-  const [cartProducts, setCartProducts] = useState(
-    JSON.parse(localStorage.getItem("cartProducts"))
-  );
+  const [cartProducts, setCartProducts] = useState(cartItems);
 
   // Handle Add To Cart
   const handleAddToCart = (products) => {
@@ -33,6 +31,7 @@ const CartContext = ({ children }) => {
       category: products.category,
       ProductImage: products.ProductImage,
       ProductPrice: products.ProductPrice,
+      UpdatePrice: products.UpdatePrice,
       productQuantity: 1,
     };
     let newCart = [];
@@ -55,6 +54,7 @@ const CartContext = ({ children }) => {
     const updateItems = cartItems.filter((product) => product._id !== id);
     setCartItems(updateItems);
     setLocalStorage(updateItems);
+    setCartQuantity(cartQuantity + 1);
   };
 
   //   get Local Storage Items
@@ -68,7 +68,13 @@ const CartContext = ({ children }) => {
   const addQuantity = (id) => {
     const updateProduct = cartItems.map((item) => {
       if (item._id == id) {
-        return { ...item, productQuantity: item.productQuantity + 1 };
+        return {
+          ...item,
+          productQuantity: item.productQuantity + 1,
+          UpdatePrice:
+            (parseInt(item.productQuantity) + 1) *
+            parseFloat(item.ProductPrice),
+        };
       }
       return item;
     });
@@ -78,15 +84,20 @@ const CartContext = ({ children }) => {
 
   // Remove Quantity
   const removeQuantity = (id) => {
-    const updateProduct = cartItems.map((item) => {
+    const updateProduct = cartItems?.map((item) => {
       if (item._id == id) {
-        return { ...item, productQuantity: item.productQuantity - 1 };
+        return {
+          ...item,
+          productQuantity: item.productQuantity - 1,
+          UpdatePrice: parseInt(item.UpdatePrice) - parseInt(item.ProductPrice),
+        };
       }
       return item;
     });
     setLocalStorage(updateProduct);
     setCartQuantity(cartQuantity + 1);
   };
+
   const cartInfo = {
     handleAddToCart,
     cartItems,

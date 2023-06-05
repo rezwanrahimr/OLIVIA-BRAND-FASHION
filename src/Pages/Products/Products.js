@@ -15,6 +15,7 @@ const Products = () => {
       .then((data) => setProduct(data));
   }, []);
 
+  console.log(product);
   return (
     <section id="mySection">
       <div className=" mt-5">

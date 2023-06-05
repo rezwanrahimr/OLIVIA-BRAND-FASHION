@@ -10,12 +10,15 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { ProductCartContext } from "../../context/CartContext";
+import companyLogo from "../../images/companyLogo.png";
 
 function ProductCart() {
+  const [subTotal, setSubTotal] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   //
   const { cartItems, removeItem, addQuantity, removeQuantity } =
     useContext(ProductCartContext);
@@ -36,6 +39,16 @@ function ProductCart() {
       }
     });
   };
+
+  // handle Price
+  useEffect(() => {
+    let subTotal = 0;
+    cartItems.forEach((item) => {
+      subTotal = subTotal + parseFloat(item.UpdatePrice);
+    });
+    setSubTotal(subTotal);
+    setTotalPrice(subTotal + 28);
+  }, [cartItems]);
   return (
     <section
       className="h-100 h-custom"
@@ -134,7 +147,7 @@ function ProductCart() {
                               </div>
                               <div style={{ width: "80px" }}>
                                 <MDBTypography tag="h5" className="mb-0">
-                                  {product.ProductPrice}
+                                  {product.UpdatePrice}
                                 </MDBTypography>
                               </div>
                               <button
@@ -159,10 +172,10 @@ function ProductCart() {
                       <MDBCardBody>
                         <div className="d-flex justify-content-between align-items-center mb-4">
                           <MDBTypography tag="h5" className="mb-0">
-                            Card details
+                            Cart details
                           </MDBTypography>
                           <MDBCardImage
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+                            src={companyLogo}
                             fluid
                             className="rounded-3"
                             style={{ width: "45px" }}
@@ -170,74 +183,11 @@ function ProductCart() {
                           />
                         </div>
 
-                        <p className="small">Card type</p>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-mastercard fa-2x me-2" />
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-visa fa-2x me-2" />
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-amex fa-2x me-2" />
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          <MDBIcon fab icon="cc-paypal fa-2x me-2" />
-                        </a>
-
-                        <form className="mt-4">
-                          <MDBInput
-                            className="mb-4"
-                            label="Cardholder's Name"
-                            type="text"
-                            size="lg"
-                            placeholder="Cardholder's Name"
-                            contrast
-                          />
-
-                          <MDBInput
-                            className="mb-4"
-                            label="Card Number"
-                            type="text"
-                            size="lg"
-                            minLength="19"
-                            maxLength="19"
-                            placeholder="1234 5678 9012 3457"
-                            contrast
-                          />
-
-                          <MDBRow className="mb-4">
-                            <MDBCol md="6">
-                              <MDBInput
-                                className="mb-4"
-                                label="Expiration"
-                                type="text"
-                                size="lg"
-                                minLength="7"
-                                maxLength="7"
-                                placeholder="MM/YYYY"
-                                contrast
-                              />
-                            </MDBCol>
-                            <MDBCol md="6">
-                              <MDBInput
-                                className="mb-4"
-                                label="Cvv"
-                                type="text"
-                                size="lg"
-                                minLength="3"
-                                maxLength="3"
-                                placeholder="&#9679;&#9679;&#9679;"
-                                contrast
-                              />
-                            </MDBCol>
-                          </MDBRow>
-                        </form>
-
                         <hr />
 
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">Subtotal</p>
-                          <p className="mb-2">$4798.00</p>
+                          <p className="mb-2">${subTotal}</p>
                         </div>
 
                         <div className="d-flex justify-content-between">
@@ -247,12 +197,12 @@ function ProductCart() {
 
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">Total(Incl. taxes)</p>
-                          <p className="mb-2">$4818.00</p>
+                          <p className="mb-2">${totalPrice}</p>
                         </div>
 
                         <MDBBtn color="info" block size="lg">
                           <div className="d-flex justify-content-between">
-                            <span>$4818.00</span>
+                            <span>${totalPrice}</span>
                             <span>
                               Checkout{" "}
                               <i className="fas fa-long-arrow-alt-right ms-2"></i>
