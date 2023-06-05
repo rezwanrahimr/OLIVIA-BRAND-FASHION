@@ -24,13 +24,13 @@ const SearchModal = ({ showModal, setShowModal }) => {
       <Modal show={showModal} className="w-100 test-modal">
         <Modal.Body>
           <form
-            class="d-flex "
+            className="d-flex "
             role="search"
             style={{ width: "60%" }}
             onSubmit={(e) => e.preventDefault()}
           >
             <input
-              class="form-control me-2"
+              className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
@@ -38,7 +38,7 @@ const SearchModal = ({ showModal, setShowModal }) => {
               onKeyPress={handlekey}
             ></input>
             <button
-              class="btn-close"
+              className="btn-close"
               aria-label="Close"
               onClick={() => setShowModal(false)}
             ></button>

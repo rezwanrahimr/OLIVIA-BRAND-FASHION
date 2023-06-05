@@ -1,8 +1,12 @@
-.select{
-    background-color: #fb5c42;
-    color: white;
+.shop-container {
+  margin-top: 95px;
 }
-.paginaton-button button{
-    padding: 10px 15px;
-    border: 0px;
+
+.select {
+  background-color: #fb5c42;
+  color: white;
+}
+.paginaton-button button {
+  padding: 10px 15px;
+  border: 0px;
 }

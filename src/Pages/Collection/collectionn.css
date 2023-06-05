@@ -1,21 +1,23 @@
-.collectioin h1{
-    padding-top: 30px;
-    padding-bottom: 30px;
+.collectioin {
+  margin-top: 95px;
+}
+.collectioin h1 {
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 @media screen and (max-width: 1336px) {
-    .collectioin{
-        padding-right: 3rem;
-        padding-left: 3rem;
-    }
+  .collectioin {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
 }
 @media screen and (max-width: 576px) {
-    .collectioin{
-        padding-right: 1rem;
-        padding-left: 1rem;
-    }
-    .collectioin .section2{
-        padding-top: 1rem;
-    }
+  .collectioin {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+  .collectioin .section2 {
+    padding-top: 1rem;
+  }
 }
-

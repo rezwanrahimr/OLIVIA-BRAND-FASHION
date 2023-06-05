@@ -21,6 +21,7 @@ import UpdateProfile from "./Pages/Dashboard/UpdateProfile";
 import Payment from "./Pages/Dashboard/Payment";
 import Collection from "./Pages/Collection/Collection";
 import SearchProducts from "./Pages/SearchProducts/SearchProducts";
+import ProductCart from "./Pages/ProductCart/ProductCart";
 
 function App() {
   return (
@@ -39,6 +40,10 @@ function App() {
         <Route path="/SignUp" element={<SignUp></SignUp>}>
           Login
         </Route>
+        <Route
+          path="/productsCart"
+          element={<ProductCart></ProductCart>}
+        ></Route>
         <Route
           path="/Cart/:id"
           element={

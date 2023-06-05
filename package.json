@@ -14,7 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.0",
     "firebase": "^9.9.4",
-    "mdb-react-ui-kit": "^4.1.0",
+    "mdb-react-ui-kit": "^4.2.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-sidebar": "^0.0.1",
@@ -29,6 +29,7 @@
     "react-slick": "^0.29.0",
     "react-toastify": "^9.0.8",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.7.10",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -11,12 +11,12 @@ import SearchModal from "./SearchModal/SearchModal";
 import { useContext } from "react";
 import { authContext } from "../../context/AuthContext";
 import OfferHeader from "./OfferHeader/OfferHeader";
-import { Searchcontext } from "../../context/SearchContext";
+import { ProductCartContext } from "../../context/CartContext";
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const { user, isLoading, handleSignOut } = useContext(authContext);
-  const { cartQuantity } = useContext(Searchcontext);
+  const { cartItems } = useContext(ProductCartContext);
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -81,20 +81,23 @@ const Header = () => {
             </Nav>
 
             <Nav.Link className="fw-bold text-black" onClick={handleOpenModal}>
-              <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+              <i className="fa-solid fa-magnifying-glass fa-lg"></i>
             </Nav.Link>
 
-            <div class="dropdown">
+            <div className="dropdown">
               <span
-                class=" dropdown-toggle"
+                className=" dropdown-toggle"
                 type="button"
                 id="dropdownMenuButton1"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <i class="fa-regular fa-user fa-lg"></i>
+                <i className="fa-regular fa-user fa-lg"></i>
               </span>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton1"
+              >
                 {user?.email ? (
                   <>
                     <li>
@@ -116,16 +119,13 @@ const Header = () => {
                 )}
               </ul>
             </div>
-            <Link className="text-decoration-none" to="/About">
-              <Nav.Link href="#action2" className="fw-bold text-black">
-                <span type="" class="position-relative">
-                  <i class="fa-solid fa-bag-shopping fa-lg "></i>
-                  <span class="position-absolute text-success top-0 start-100 translate-middle badge ">
-                    {cartQuantity}
-                    <span class="visually-hidden">unread messages</span>
-                  </span>
+            <Link className="text-decoration-none" to="/productsCart">
+              <span type="" className="position-relative">
+                <i className="fa-solid fa-bag-shopping fa-lg "></i>
+                <span className="position-absolute text-success top-0 start-100 translate-middle badge ">
+                  {cartItems?.length}
                 </span>
-              </Nav.Link>
+              </span>
             </Link>
           </Navbar.Collapse>
         </Container>

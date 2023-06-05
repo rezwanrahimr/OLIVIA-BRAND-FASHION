@@ -1,24 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import OurService from "../OurService/OurService";
 import Footer from "../Sheard/Footer";
 import Subscribe from "../Subscribe/Subscribe";
-import shop from "./shop.css";
+import "./shop.css";
+import { useQuery } from "react-query";
+import Loading from "../Sheard/Loading";
 
 const Shop = () => {
-  const [product, setProduct] = useState([]);
+  // const [product, setProduct] = useState([]);
   const [productCount, setProductCount] = useState(0);
   const [selectPage, setSelectPage] = useState(0);
   const [productSize, setProductSize] = useState(8);
 
+  const { data: product, isLoading } = useQuery({
+    queryKey: ["productss", selectPage, productSize],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://olivia-brand-fashion-backend.vercel.app/productss?page=${selectPage}&size=${productSize}`
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
   // Load All Products.
-  useEffect(() => {
+  /*  useEffect(() => {
     fetch(
       `https://olivia-brand-fashion-backend.vercel.app/productss?page=${selectPage}&size=${productSize}`
     )
       .then((res) => res.json())
       .then((data) => setProduct(data));
-  }, [selectPage, productSize]);
+  }, [selectPage, productSize]); */
 
   // Product Count.
   useEffect(() => {
@@ -30,8 +42,12 @@ const Shop = () => {
         setProductCount(result);
       });
   }, []);
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
-    <div className=" mt-5">
+    <div className="shop-container">
       <div className="AllProducts">
         {product.map((products) => (
           <div key={products._id}>
