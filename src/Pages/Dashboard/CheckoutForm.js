@@ -1,22 +1,25 @@
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { ProductCartContext } from "../../context/CartContext";
+import { authContext } from "../../context/AuthContext";
 
-const CheckoutForm = ({ product }) => {
+const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
   const [transitionID, setTransitionID] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const { _id, CartProductPrice, CartProductName, userName } = product;
+  const { user } = useContext(authContext);
+  const { finalPrice, cartItems } = useContext(ProductCartContext);
 
   useEffect(() => {
-    fetch("https://olivia-brand-fashion-backend.vercel.app/createPayment", {
+    fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ CartProductPrice }),
+      body: JSON.stringify({ price: finalPrice }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -24,7 +27,7 @@ const CheckoutForm = ({ product }) => {
           setClientSecret(data.clientSecret);
         }
       });
-  }, [CartProductPrice]);
+  }, [finalPrice]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -52,8 +55,8 @@ const CheckoutForm = ({ product }) => {
         payment_method: {
           card: card,
           billing_details: {
-            name: CartProductName,
-            email: userName,
+            name: user?.displayName,
+            email: user?.email,
           },
         },
       });
@@ -66,20 +69,32 @@ const CheckoutForm = ({ product }) => {
 
       setSuccess("Congrats! Your payment is completed.");
 
-      const payment = {
-        card: _id,
-        transationId: paymentIntent.id,
-      };
-      fetch(`https://olivia-brand-fashion-backend.vercel.app/card/${_id}`, {
-        method: "PUT",
+      const paymentData = cartItems.map((item) => {
+        return {
+          productName: item.productName,
+          UpdatePrice: item.UpdatePrice,
+          category: item.category,
+          productQuantity: item.productQuantity,
+          ProductStock: item.ProductStock,
+          ProductPrice: item.ProductPrice,
+          ProductImage: item.ProductImage,
+          userName: user?.displayName,
+          userEmail: user?.email,
+          transactionId: paymentIntent.id,
+        };
+      });
+
+      // console.log("paymentData", paymentData);
+      // Post data
+      fetch("http://localhost:5000/paymentProduct", {
+        method: "POST",
         headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(payment),
+        body: JSON.stringify({ paymentData }),
       })
         .then((res) => res.json())
-        .then((data) => {});
+        .then((data) => console.log(data));
     }
   };
 

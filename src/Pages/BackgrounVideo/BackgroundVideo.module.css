@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
 }
-.video-container {
+.videoContainer {
   width: 100%;
   height: 100%;
   margin: 140px auto;
@@ -41,7 +41,7 @@ video {
   background-color: #ffffff;
   color: black;
 }
-.btn-arrow {
+.btnArrow {
   visibility: hidden;
 }
 .content > button:hover .btn-arrow {

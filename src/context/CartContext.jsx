@@ -11,7 +11,9 @@ const CartContext = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   //  Cart Product State
   const [cartProducts, setCartProducts] = useState(cartItems);
-
+  // Total Price
+  const [finalPrice, setFinalPrice] = useState(0);
+  console.log(finalPrice);
   // Handle Add To Cart
   const handleAddToCart = (products) => {
     if (cartProducts?.length > 0) {
@@ -22,7 +24,6 @@ const CartContext = ({ children }) => {
         return;
       }
     }
-    // console.log(products);
 
     const productData = {
       _id: products._id,
@@ -105,6 +106,8 @@ const CartContext = ({ children }) => {
     addQuantity,
     cartQuantity,
     removeQuantity,
+    finalPrice,
+    setFinalPrice,
   };
 
   return (

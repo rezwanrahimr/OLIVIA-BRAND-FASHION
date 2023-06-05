@@ -15,12 +15,12 @@ import { useContext } from "react";
 import Swal from "sweetalert2";
 import { ProductCartContext } from "../../context/CartContext";
 import companyLogo from "../../images/companyLogo.png";
+import { Link } from "react-router-dom";
 
 function ProductCart() {
   const [subTotal, setSubTotal] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  //
-  const { cartItems, removeItem, addQuantity, removeQuantity } =
+  const { cartItems, removeItem, addQuantity, removeQuantity, setFinalPrice } =
     useContext(ProductCartContext);
   // Handle Delete Items
   const handleDelete = (id) => {
@@ -49,6 +49,10 @@ function ProductCart() {
     setSubTotal(subTotal);
     setTotalPrice(subTotal + 28);
   }, [cartItems]);
+
+  useEffect(() => {
+    setFinalPrice(totalPrice);
+  }, [totalPrice]);
   return (
     <section
       className="h-100 h-custom"
@@ -201,13 +205,15 @@ function ProductCart() {
                         </div>
 
                         <MDBBtn color="info" block size="lg">
-                          <div className="d-flex justify-content-between">
-                            <span>${totalPrice}</span>
-                            <span>
-                              Checkout{" "}
-                              <i className="fas fa-long-arrow-alt-right ms-2"></i>
-                            </span>
-                          </div>
+                          <Link to="/Dashboard/payment">
+                            <div className="d-flex justify-content-between">
+                              <span>${totalPrice}</span>
+                              <span>
+                                Checkout{" "}
+                                <i className="fas fa-long-arrow-alt-right ms-2"></i>
+                              </span>
+                            </div>
+                          </Link>
                         </MDBBtn>
                       </MDBCardBody>
                     </MDBCard>
