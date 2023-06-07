@@ -69,8 +69,21 @@ const CheckoutForm = () => {
 
       setSuccess("Congrats! Your payment is completed.");
 
+      // Post data
+      const postData = (paymentData) => {
+        fetch("http://localhost:5000/paymentProduct", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(paymentData),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+      };
+
       const paymentData = cartItems.map((item) => {
-        return {
+        let paymentItems = {
           productName: item.productName,
           UpdatePrice: item.UpdatePrice,
           category: item.category,
@@ -82,19 +95,10 @@ const CheckoutForm = () => {
           userEmail: user?.email,
           transactionId: paymentIntent.id,
         };
+        postData(paymentItems);
       });
 
       // console.log("paymentData", paymentData);
-      // Post data
-      fetch("http://localhost:5000/paymentProduct", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ paymentData }),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
     }
   };
 

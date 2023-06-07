@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import "./LogoSlider.css";
 
 class LogoSlider extends Component {
   render() {
@@ -14,8 +15,8 @@ class LogoSlider extends Component {
       cssEase: "linear",
     };
     return (
-      <div className="p-0 m-0">
-        <Slider {...settings}>
+      <div className="slider-container">
+        <Slider {...settings} className="logo-slider">
           <div>
             <img
               src="https://cdn.shopify.com/s/files/1/1964/8879/files/brandlogo2_93dc40fd-5a30-4eb5-9c49-9aac604cb730.png?v=1614736403"
