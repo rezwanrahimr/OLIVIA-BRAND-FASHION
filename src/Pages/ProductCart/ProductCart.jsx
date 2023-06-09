@@ -43,7 +43,7 @@ function ProductCart() {
   // handle Price
   useEffect(() => {
     let subTotal = 0;
-    cartItems.forEach((item) => {
+    cartItems?.forEach((item) => {
       subTotal = subTotal + parseFloat(item.UpdatePrice);
     });
     setSubTotal(subTotal);
@@ -66,10 +66,10 @@ function ProductCart() {
                 <MDBRow>
                   <MDBCol lg="7">
                     <MDBTypography tag="h5">
-                      <a href="#!" className="text-body">
+                      <Link to="/shop" className="text-body">
                         <MDBIcon fas icon="long-arrow-alt-left me-2" /> Continue
                         shopping
-                      </a>
+                      </Link>
                     </MDBTypography>
 
                     <hr />

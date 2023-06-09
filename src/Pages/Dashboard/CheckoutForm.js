@@ -11,7 +11,8 @@ const CheckoutForm = () => {
   const [transitionID, setTransitionID] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const { user } = useContext(authContext);
-  const { finalPrice, cartItems } = useContext(ProductCartContext);
+  const { finalPrice, cartItems, setCartQuantity, cartQuantity } =
+    useContext(ProductCartContext);
 
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
@@ -79,7 +80,13 @@ const CheckoutForm = () => {
           body: JSON.stringify(paymentData),
         })
           .then((res) => res.json())
-          .then((data) => console.log(data));
+          .then((data) => {
+            console.log(data);
+            if (data.acknowledged) {
+              localStorage.removeItem("cartProducts");
+              setCartQuantity(cartQuantity + 1);
+            }
+          });
       };
 
       const paymentData = cartItems.map((item) => {

@@ -15,6 +15,7 @@ const CartContext = ({ children }) => {
   const [finalPrice, setFinalPrice] = useState(0);
   console.log(finalPrice);
   // Handle Add To Cart
+
   const handleAddToCart = (products) => {
     if (cartProducts?.length > 0) {
       const checkProduct = cartProducts?.filter(
@@ -36,7 +37,7 @@ const CartContext = ({ children }) => {
       productQuantity: 1,
     };
     let newCart = [];
-    if (cartProducts !== null) {
+    if (cartProducts !== null || cartProducts !== []) {
       newCart = [...cartProducts, productData];
       setCartProducts(newCart);
     } else {
@@ -108,6 +109,7 @@ const CartContext = ({ children }) => {
     removeQuantity,
     finalPrice,
     setFinalPrice,
+    setCartQuantity,
   };
 
   return (
