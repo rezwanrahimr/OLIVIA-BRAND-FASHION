@@ -12,7 +12,6 @@ import ProtractedRoute from "./Pages/ProtractedRoute/ProtractedRoute";
 import { ToastContainer } from "react-toastify";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyOrder from "./Pages/Dashboard/MyOrder";
-import AddReview from "./Pages/Dashboard/AddReview";
 import MyProfile from "./Pages/Dashboard/MyProfile";
 import ManageAllOrders from "./Pages/Dashboard/ManageAllOrders";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
@@ -57,7 +56,7 @@ function App() {
         </Route>
         <Route path="/Dashboard" element={<Dashboard></Dashboard>}>
           <Route index element={<MyOrder></MyOrder>}></Route>
-          <Route path="addReview" element={<AddReview></AddReview>}></Route>
+
           <Route path="payment" element={<Payment></Payment>}></Route>
           <Route path="MyProfile" element={<MyProfile></MyProfile>}></Route>
           <Route

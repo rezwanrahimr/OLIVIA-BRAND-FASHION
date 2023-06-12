@@ -104,8 +104,6 @@ const CheckoutForm = () => {
         };
         postData(paymentItems);
       });
-
-      // console.log("paymentData", paymentData);
     }
   };
 

@@ -1,6 +1,5 @@
 import {
   MDBBadge,
-  MDBBtn,
   MDBTable,
   MDBTableBody,
   MDBTableHead,
@@ -15,7 +14,7 @@ import Swal from "sweetalert2";
 
 const MyOrder = () => {
   const [products, setProducts] = useState([]);
-  const { user } = useContext(authContext);
+  const { user, isLoading } = useContext(authContext);
   const { cartItems, removeItem } = useContext(ProductCartContext);
 
   useEffect(() => {
@@ -33,6 +32,10 @@ const MyOrder = () => {
         });
     }
   }, [user?.email, cartItems]);
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   // Handle Delete.
   const HandleDelete = (id) => {
@@ -53,7 +56,6 @@ const MyOrder = () => {
   };
   return (
     <div>
-      {/* <h1 className="text-center fw-bold my-4">MY ORDER</h1> */}
       <div>
         <MDBTable align="middle">
           <MDBTableHead className="table-dark">

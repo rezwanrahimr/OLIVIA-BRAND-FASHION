@@ -1,101 +1,166 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
+import Loading from "../Sheard/Loading";
+import Swal from "sweetalert2";
+import "./AddProduct.css";
 
 const AddProduct = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
   const handleForm = (event) => {
     event.preventDefault();
-    const productName = event.target.productName.value;
-    const ProductImage = event.target.ProductImage.value;
-    const ProductDescription = event.target.ProductDescription.value;
-    const ProductPrice = event.target.ProductPrice.value;
-    const ProductStock = event.target.ProductStock.value;
-    const BrandName = event.target.BrandName.value;
-    const DiscountPrice = event.target.DiscountPrice.value;
-    const Discount = event.target.Discount.value;
+    // Set Loader.
+    setIsLoading(true);
+    // Get the form value.
+    const form = event.target;
+    const productName = form.productName.value;
+    const ProductDescription = form.description.value;
+    const ProductPrice = form.ProductPrice.value;
+    const ProductStock = form.ProductStock.value;
+    const BrandName = form.BrandName.value;
+    const DiscountPrice = form.DiscountPrice.value;
+    const Discount = form.Discount.value;
+    const category = form.category.value;
 
-    const productData = {
-      productName,
-      ProductImage,
-      ProductDescription,
-      ProductPrice,
-      ProductStock,
-      BrandName,
-      DiscountPrice,
-      Discount,
-    };
-
-    fetch("https://olivia-brand-fashion-backend.vercel.app/products", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(productData),
-    })
+    // get the image file from file input
+    const image = form.image.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    // Host Image on Image BB
+    fetch(
+      `https://api.imgbb.com/1/upload?key=81a6cc27ee20d033b013542f5d21566b`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
-        event.target.reset();
-        alert("data added");
+        if (data.success) {
+          // Create Product Object
+          const productData = {
+            productName,
+            ProductImage: data.url,
+            ProductDescription,
+            ProductPrice,
+            ProductStock,
+            BrandName,
+            DiscountPrice,
+            Discount,
+            category,
+          };
+
+          // Store Product on Database
+          fetch("https://olivia-brand-fashion-backend.vercel.app/products", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(productData),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                setIsLoading(false);
+                // Reset Form Data.
+                form.reset();
+                Swal.fire(
+                  "Product Added!",
+                  "You clicked the button!",
+                  "success"
+                );
+              }
+            });
+        }
       });
   };
   return (
     <div>
       <div className="d-flex justify-content-center">
-        <Card style={{ width: "18rem" }}>
+        <Card style={{ width: "50%" }}>
           <Card.Body>
             <h5 className="text-center my-1 fw-bold">ADD PRODUCTS</h5>
             <div className="d-flex justify-content-center">
               <form onSubmit={handleForm}>
+                <label>Name</label>
                 <input
+                  required
                   type="text"
                   name="productName"
                   placeholder="Product Name"
                 />
                 <br />
+
+                <label>Price</label>
                 <input
-                  type="text"
-                  name="ProductImage"
-                  className="my-2"
-                  placeholder="ProductImage"
-                />
-                <br />
-                <input
-                  type="text"
-                  name="ProductDescription"
-                  placeholder="ProductDescription"
-                />
-                <br />
-                <input
-                  type="text"
+                  required
+                  type="number"
                   name="ProductPrice"
-                  className="my-2"
-                  placeholder="ProductPrice"
+                  placeholder="Product Price"
                 />
                 <br />
+                <label>Stock</label>
                 <input
-                  type="text"
+                  required
+                  type="number"
                   name="ProductStock"
-                  placeholder="ProductStock"
+                  placeholder="product stock"
                 />
                 <br />
+                <label>Brand</label>
                 <input
+                  required
                   type="text"
                   name="BrandName"
                   className="my-2"
-                  placeholder="BrandName"
+                  placeholder="brand name"
                 />
                 <br />
+                <label>Discount</label>
                 <input
-                  type="text"
+                  type="number"
                   name="DiscountPrice"
-                  placeholder="DiscountPrice"
+                  placeholder="discount price"
                 />
                 <br />
+                <label>Discount %</label>
                 <input
-                  type="text"
+                  type="number"
                   name="Discount"
                   className="my-2"
-                  placeholder="Discount"
+                  placeholder="discount %"
                 />
+                <br />
+                <label>Category</label>
+                <input
+                  required
+                  type="text"
+                  name="category"
+                  className="my-2"
+                  placeholder="category"
+                />
+                <br />
+                <label>Image</label>
+                <input
+                  required
+                  class="form-control"
+                  name="image"
+                  type="file"
+                  id="formFile"
+                />
+                <br />
+                <label>Description</label>
+                <textarea
+                  required
+                  class="form-control"
+                  name="description"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ></textarea>
                 <br />
                 <div className="d-flex justify-content-center">
                   <Button variant="dark" type="submit">

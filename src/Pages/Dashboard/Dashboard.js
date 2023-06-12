@@ -32,12 +32,7 @@ const Dashboard = () => {
           >
             My Order
           </Link>
-          <Link
-            to="/Dashboard/AddReview"
-            className={isActive("/Dashboard/AddReview") ? "active" : ""}
-          >
-            Add Review
-          </Link>
+
           <Link
             to="/Dashboard/MyProfile"
             className={isActive("/Dashboard/MyProfile") ? "active" : ""}

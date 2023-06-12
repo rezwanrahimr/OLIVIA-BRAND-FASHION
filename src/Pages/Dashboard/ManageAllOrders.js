@@ -1,86 +1,117 @@
 import {
   MDBBadge,
-  MDBBtn,
   MDBTable,
   MDBTableBody,
   MDBTableHead,
 } from "mdb-react-ui-kit";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
-import { toast } from "react-toastify";
 import Loading from "../Sheard/Loading";
+import Swal from "sweetalert2";
 
 const ManageAllOrders = () => {
-  const [orders, setOrder] = useState([]);
-  useEffect(() => {
-    fetch("https://olivia-brand-fashion-backend.vercel.app/orders", {})
-      .then((res) => res.json())
-      .then((data) => setOrder(data));
-  }, []);
+  // Load all orders
+  const {
+    data: orders,
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["get-all-orders"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/get-all-orders");
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   // Delete Order
   const handleDeleteOrder = (id) => {
-    const process = window.confirm("Are Your Sure !");
-    if (process === true) {
-      fetch(`https://olivia-brand-fashion-backend.vercel.app/order/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          toast.error("This Order is Cancelled !");
-          setOrder(orders.filter((order) => order._id !== id));
-        });
-    }
+    Swal.fire({
+      title: "Are you sure? This Product is Already Payment",
+      text: "You won't be able to Delete this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/delete-order/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.acknowledged) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              refetch();
+            }
+          });
+      }
+    });
   };
   return (
     <div className="mt-3">
       <MDBTable align="middle">
-        {orders.map((order) => (
+        <MDBTableHead className="table-dark">
+          <tr>
+            <th scope="col" className="fw-bold">
+              No
+            </th>
+            <th scope="col" className="fw-bold">
+              Products
+            </th>
+            <th scope="col" className="fw-bold">
+              Transaction{" "}
+            </th>
+
+            <th scope="col" className="fw-bold">
+              Quantity
+            </th>
+            <th scope="col" className="fw-bold">
+              Price{" "}
+            </th>
+            <th scope="col" className="fw-bold"></th>
+          </tr>
+        </MDBTableHead>
+        {orders?.map((order, index) => (
           <MDBTableBody key={order._id}>
             <tr>
+              <td>{index + 1}</td>
               <td>
                 <div className="d-flex align-items-center">
                   <img
-                    src={order.CartProductImage}
+                    src={order.ProductImage}
                     alt=""
                     style={{ width: "45px", height: "45px" }}
                     className="rounded-circle"
                   />
                   <div className="ms-3">
-                    <p className="fw-bold mb-1">{order.CartProductName}</p>
+                    <p className="fw-bold mb-1">{order.productName}</p>
                     <p className="text-muted mb-0">{order.userName}</p>
                   </div>
                 </div>
               </td>
               <td>
-                <span className="fw-bold">{order.transationId}</span>
+                <span className="fw-bold">{order.transactionId}</span>
               </td>
               <td>
                 <MDBBadge color="success" pill>
                   {order.productQuantity}
                 </MDBBadge>
               </td>
-              <td className="fw-bold">{order.CartProductPrice}</td>
+              <td className="fw-bold">{order.UpdatePrice}</td>
               <td>
-                {order.paid && (
-                  <MDBBtn rounded color="success">
-                    Paid
-                  </MDBBtn>
-                )}
-                {!order.paid && (
-                  <MDBBtn rounded color="danger">
-                    Not Paid
-                  </MDBBtn>
-                )}
-              </td>
-              <td>
-                <MDBBtn
-                  rounded
-                  color="danger"
+                <button
+                  type="button"
+                  class="bg-none border-0"
                   onClick={() => handleDeleteOrder(order._id)}
                 >
-                  Delete Order
-                </MDBBtn>
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
               </td>
             </tr>
           </MDBTableBody>
