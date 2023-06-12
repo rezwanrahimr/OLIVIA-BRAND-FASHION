@@ -1,15 +1,37 @@
 import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
-import Loading from "../Sheard/Loading";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import Loading from "../../Sheard/Loading";
 import Swal from "sweetalert2";
-import "./AddProduct.css";
 
-const AddProduct = () => {
+const UpdateProduct = () => {
+  const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
 
-  if (isLoading) {
+  const { data = [], isLoading: load } = useQuery({
+    queryKey: [""],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/products/${id}`);
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (load || isLoading) {
     return <Loading></Loading>;
   }
+
+  const {
+    productName,
+    ProductDescription,
+    ProductPrice,
+    ProductStock,
+    BrandName,
+    DiscountPrice,
+    Discount,
+    category,
+  } = data[0];
 
   const handleForm = (event) => {
     event.preventDefault();
@@ -44,7 +66,7 @@ const AddProduct = () => {
           // Create Product Object
           const productData = {
             productName,
-            ProductImage: data.data.url,
+            ProductImage: data?.data?.url,
             ProductDescription,
             ProductPrice,
             ProductStock,
@@ -54,9 +76,10 @@ const AddProduct = () => {
             category,
           };
 
+          console.log(productData);
           // Store Product on Database
-          fetch("https://olivia-brand-fashion-backend.vercel.app/products", {
-            method: "POST",
+          fetch(`http://localhost:5000/products/${id}`, {
+            method: "PUT",
             headers: {
               "content-type": "application/json",
             },
@@ -69,7 +92,7 @@ const AddProduct = () => {
                 // Reset Form Data.
                 form.reset();
                 Swal.fire(
-                  "Product Added!",
+                  "Product Update!",
                   "You clicked the button!",
                   "success"
                 );
@@ -83,11 +106,12 @@ const AddProduct = () => {
       <div className="d-flex justify-content-center">
         <Card style={{ width: "50%" }}>
           <Card.Body>
-            <h5 className="text-center my-1 fw-bold">ADD PRODUCTS</h5>
+            <h5 className="text-center my-1 fw-bold">UPDATE PRODUCTS</h5>
             <div className="d-flex justify-content-center">
               <form onSubmit={handleForm}>
                 <label>Name</label>
                 <input
+                  defaultValue={productName}
                   required
                   type="text"
                   name="productName"
@@ -97,6 +121,7 @@ const AddProduct = () => {
 
                 <label>Price</label>
                 <input
+                  defaultValue={ProductPrice}
                   required
                   type="number"
                   name="ProductPrice"
@@ -105,6 +130,7 @@ const AddProduct = () => {
                 <br />
                 <label>Stock</label>
                 <input
+                  defaultValue={ProductStock}
                   required
                   type="number"
                   name="ProductStock"
@@ -113,6 +139,7 @@ const AddProduct = () => {
                 <br />
                 <label>Brand</label>
                 <input
+                  defaultValue={BrandName}
                   required
                   type="text"
                   name="BrandName"
@@ -122,6 +149,7 @@ const AddProduct = () => {
                 <br />
                 <label>Discount</label>
                 <input
+                  defaultValue={DiscountPrice}
                   type="number"
                   name="DiscountPrice"
                   placeholder="discount price"
@@ -129,6 +157,7 @@ const AddProduct = () => {
                 <br />
                 <label>Discount %</label>
                 <input
+                  defaultValue={Discount}
                   type="number"
                   name="Discount"
                   className="my-2"
@@ -137,6 +166,7 @@ const AddProduct = () => {
                 <br />
                 <label>Category</label>
                 <input
+                  defaultValue={category}
                   required
                   type="text"
                   name="category"
@@ -155,6 +185,7 @@ const AddProduct = () => {
                 <br />
                 <label>Description</label>
                 <textarea
+                  defaultValue={ProductDescription}
                   required
                   class="form-control"
                   name="description"
@@ -176,4 +207,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;

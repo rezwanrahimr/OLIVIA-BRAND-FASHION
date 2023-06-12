@@ -5,11 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/Login/SignUp";
 import AddProduct from "./Pages/AddProduct/AddProduct";
-import Cart from "./Pages/Cart/Cart";
 import Shop from "./Pages/Shop/Shop";
 import About from "./Pages/About/About";
-import ProtractedRoute from "./Pages/ProtractedRoute/ProtractedRoute";
-import { ToastContainer } from "react-toastify";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyOrder from "./Pages/Dashboard/MyOrder";
 import MyProfile from "./Pages/Dashboard/MyProfile";
@@ -21,6 +18,7 @@ import Payment from "./Pages/Dashboard/Payment";
 import Collection from "./Pages/Collection/Collection";
 import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 import ProductCart from "./Pages/ProductCart/ProductCart";
+import UpdateProduct from "./Pages/Dashboard/UpdateProduct/UpdateProduct";
 
 function App() {
   return (
@@ -44,16 +42,7 @@ function App() {
           path="/productsCart"
           element={<ProductCart></ProductCart>}
         ></Route>
-        <Route
-          path="/Cart/:id"
-          element={
-            <ProtractedRoute>
-              <Cart></Cart>
-            </ProtractedRoute>
-          }
-        >
-          Cart
-        </Route>
+
         <Route path="/Dashboard" element={<Dashboard></Dashboard>}>
           <Route index element={<MyOrder></MyOrder>}></Route>
 
@@ -68,6 +57,10 @@ function App() {
           <Route
             path="ManageAllProducts"
             element={<ManageAllProducts></ManageAllProducts>}
+          ></Route>
+          <Route
+            path="product-update/:id"
+            element={<UpdateProduct></UpdateProduct>}
           ></Route>
         </Route>
         <Route path="/Shop" element={<Shop></Shop>}>
@@ -84,7 +77,6 @@ function App() {
           element={<UpdateProfile></UpdateProfile>}
         ></Route>
       </Routes>
-      <ToastContainer />
     </div>
   );
 }
