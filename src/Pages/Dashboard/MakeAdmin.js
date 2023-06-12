@@ -1,25 +1,31 @@
-import {
-  MDBBadge,
-  MDBBtn,
-  MDBTable,
-  MDBTableBody,
-  MDBTableHead,
-} from "mdb-react-ui-kit";
-import React, { useEffect, useState } from "react";
+import { MDBTable, MDBTableBody, MDBTableHead } from "mdb-react-ui-kit";
+import React from "react";
 import User from "./User";
+import { useQuery } from "react-query";
+import Loading from "../Sheard/Loading";
 
 const MakeAdmin = () => {
-  const [users, setUser] = useState([]);
-  useEffect(() => {
-    fetch("https://olivia-brand-fashion-backend.vercel.app/user", {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accesToken")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setUser(data));
-  }, []);
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/user", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accesToken")}`,
+        },
+      });
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <div>
       <MDBTable align="middle">
@@ -44,7 +50,7 @@ const MakeAdmin = () => {
         </MDBTableHead>
         <MDBTableBody>
           {users?.map((user) => (
-            <User key={user?._id} setUser={setUser} user={user}></User>
+            <User key={user?._id} user={user} refetch={refetch}></User>
           ))}
         </MDBTableBody>
       </MDBTable>

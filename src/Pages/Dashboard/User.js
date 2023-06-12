@@ -1,10 +1,10 @@
-import { MDBBadge, MDBBtn } from "mdb-react-ui-kit";
+import { MDBBadge } from "mdb-react-ui-kit";
 import React from "react";
 import { Button } from "react-bootstrap";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
-const User = ({ user, setUser }) => {
-  const { Name, email, role, Image, Address, _id } = user;
+const User = ({ user, refetch }) => {
+  const { Name, email, role, Image, _id } = user;
 
   const MakeAdmin = () => {
     fetch(
@@ -18,20 +18,41 @@ const User = ({ user, setUser }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        toast.success("Make Admin Successfuly");
+        if (data.acknowledged) {
+          Swal.fire(
+            "Make Admin Successfully",
+            "You clicked the button!",
+            "success"
+          );
+          refetch();
+        }
       });
   };
 
   // Delete User
   const HandleDelete = (id) => {
-    fetch(`https://olivia-brand-fashion-backend.vercel.app/user/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        toast.success("Delete User Successfuly !");
-        setUser(user.filter((order) => order._id !== id));
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to delete this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://olivia-brand-fashion-backend.vercel.app/user/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.acknowledged) {
+              Swal.fire("Delete User ", "success");
+              refetch();
+            }
+          });
+      }
+    });
   };
   return (
     <>
