@@ -13,7 +13,13 @@ const CartContext = ({ children }) => {
   const [cartProducts, setCartProducts] = useState(cartItems);
   // Total Price
   const [finalPrice, setFinalPrice] = useState(0);
-  console.log(finalPrice);
+
+  //  Handle Cart Price
+  const [subTotal, setSubTotal] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  // Store Shipping Address
+  const [shippingAddress, setShippingAddress] = useState({});
   // Handle Add To Cart
 
   const handleAddToCart = (products) => {
@@ -100,6 +106,20 @@ const CartContext = ({ children }) => {
     setCartQuantity(cartQuantity + 1);
   };
 
+  // handle Price
+  useEffect(() => {
+    let subTotal = 0;
+    cartItems?.forEach((item) => {
+      subTotal = subTotal + parseFloat(item.UpdatePrice);
+    });
+    setSubTotal(subTotal);
+    setTotalPrice(subTotal + 28);
+  }, [cartItems]);
+
+  useEffect(() => {
+    setFinalPrice(totalPrice);
+  }, [totalPrice]);
+
   const cartInfo = {
     handleAddToCart,
     cartItems,
@@ -110,6 +130,10 @@ const CartContext = ({ children }) => {
     finalPrice,
     setFinalPrice,
     setCartQuantity,
+    subTotal,
+    totalPrice,
+    shippingAddress,
+    setShippingAddress,
   };
 
   return (

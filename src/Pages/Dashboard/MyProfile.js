@@ -1,29 +1,28 @@
-import { MDBBadge, MDBBtn, MDBTableBody } from "mdb-react-ui-kit";
-import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { MDBBtn, MDBTableBody } from "mdb-react-ui-kit";
+import React from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import auth from "../../firebase.init";
 import Loading from "../Sheard/Loading";
-import myprofile from "./myprofile.css";
+import "./myprofile.css";
+import { useContext } from "react";
+import { useQuery } from "react-query";
+import { authContext } from "../../context/AuthContext";
 
 const MyProfile = () => {
-  const [userData, setUserData] = useState([]);
-  const [user, loading, error] = useAuthState(auth);
-  const email = user?.email;
-  useEffect(() => {
-    fetch(`https://olivia-brand-fashion-backend.vercel.app/user/${email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUserData(data);
-      });
-  }, [user]);
+  const { user, isLoading } = useContext(authContext);
 
-  if (loading) {
+  const { data: userData } = useQuery({
+    queryKey: ["user", user],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://olivia-brand-fashion-backend.vercel.app/user/${user?.email}`
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
     return <Loading></Loading>;
-  }
-  if (error) {
-    toast.error(error?.message);
   }
 
   return (
@@ -33,7 +32,7 @@ const MyProfile = () => {
         <MDBTableBody>
           <tr>
             <td>
-              {userData.map((user) => (
+              {userData?.map((user) => (
                 <div key={user._id} className="d-flex align-items-center ">
                   <img
                     src={user.Image}
@@ -43,10 +42,12 @@ const MyProfile = () => {
                   />
 
                   <div className="ms-3">
-                    <p className="fw-bold mb-1">Name: {user.Name}</p>
-                    <p className="text-muted mb-0">Email: {user.email}</p>
-                    <p className="text-muted mb-0">Phone: {user.Number}</p>
-                    <p className="text-muted mb-0">Address: {user.Address}</p>
+                    <p className="fw-bold fs-3 mb-1">Name: {user.Name}</p>
+                    <p className="text-muted fs-4 mb-0">Email: {user.email}</p>
+                    <p className="text-muted fs-4 mb-0">Phone: {user.Number}</p>
+                    <p className="text-muted fs-4 mb-0">
+                      Address: {user.Address}
+                    </p>
                     <div>
                       <Link to={`/updateProfile/${user._id}`}>
                         <MDBBtn color="dark">Update</MDBBtn>

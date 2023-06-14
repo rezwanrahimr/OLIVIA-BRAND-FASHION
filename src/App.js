@@ -19,6 +19,7 @@ import Collection from "./Pages/Collection/Collection";
 import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 import ProductCart from "./Pages/ProductCart/ProductCart";
 import UpdateProduct from "./Pages/Dashboard/UpdateProduct/UpdateProduct";
+import CheckOutForm from "./Pages/CheckOutForm/CheckOutForm";
 
 function App() {
   return (
@@ -41,6 +42,10 @@ function App() {
         <Route
           path="/productsCart"
           element={<ProductCart></ProductCart>}
+        ></Route>
+        <Route
+          path="/checkoutForm"
+          element={<CheckOutForm></CheckOutForm>}
         ></Route>
 
         <Route path="/Dashboard" element={<Dashboard></Dashboard>}>

@@ -11,9 +11,14 @@ const CheckoutForm = () => {
   const [transitionID, setTransitionID] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const { user } = useContext(authContext);
-  const { finalPrice, cartItems, setCartQuantity, cartQuantity } =
-    useContext(ProductCartContext);
-
+  const {
+    finalPrice,
+    cartItems,
+    setCartQuantity,
+    cartQuantity,
+    shippingAddress,
+  } = useContext(ProductCartContext);
+  console.log(shippingAddress);
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
@@ -100,6 +105,8 @@ const CheckoutForm = () => {
           ProductImage: item.ProductImage,
           userName: user?.displayName,
           userEmail: user?.email,
+          phone: shippingAddress.phone,
+          address: shippingAddress.address,
           transactionId: paymentIntent.id,
         };
         postData(paymentItems);

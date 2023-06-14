@@ -1,27 +1,29 @@
 import {
-  MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardImage,
   MDBCol,
   MDBContainer,
   MDBIcon,
-  MDBInput,
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { ProductCartContext } from "../../context/CartContext";
-import companyLogo from "../../images/companyLogo.png";
 import { Link } from "react-router-dom";
+import CartDetails from "../CartDetails/CartDetails";
 
 function ProductCart() {
-  const [subTotal, setSubTotal] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const { cartItems, removeItem, addQuantity, removeQuantity, setFinalPrice } =
-    useContext(ProductCartContext);
+  const {
+    cartItems,
+    removeItem,
+    addQuantity,
+    removeQuantity,
+    subTotal,
+    totalPrice,
+  } = useContext(ProductCartContext);
   // Handle Delete Items
   const handleDelete = (id) => {
     Swal.fire({
@@ -40,19 +42,6 @@ function ProductCart() {
     });
   };
 
-  // handle Price
-  useEffect(() => {
-    let subTotal = 0;
-    cartItems?.forEach((item) => {
-      subTotal = subTotal + parseFloat(item.UpdatePrice);
-    });
-    setSubTotal(subTotal);
-    setTotalPrice(subTotal + 28);
-  }, [cartItems]);
-
-  useEffect(() => {
-    setFinalPrice(totalPrice);
-  }, [totalPrice]);
   return (
     <section
       className="h-100 h-custom"
@@ -171,53 +160,10 @@ function ProductCart() {
                     ))}
                   </MDBCol>
 
-                  <MDBCol lg="5">
-                    <MDBCard className="bg-primary text-white rounded-3">
-                      <MDBCardBody>
-                        <div className="d-flex justify-content-between align-items-center mb-4">
-                          <MDBTypography tag="h5" className="mb-0">
-                            Cart details
-                          </MDBTypography>
-                          <MDBCardImage
-                            src={companyLogo}
-                            fluid
-                            className="rounded-3"
-                            style={{ width: "45px" }}
-                            alt="Avatar"
-                          />
-                        </div>
-
-                        <hr />
-
-                        <div className="d-flex justify-content-between">
-                          <p className="mb-2">Subtotal</p>
-                          <p className="mb-2">${subTotal}</p>
-                        </div>
-
-                        <div className="d-flex justify-content-between">
-                          <p className="mb-2">Shipping</p>
-                          <p className="mb-2">$20.00</p>
-                        </div>
-
-                        <div className="d-flex justify-content-between">
-                          <p className="mb-2">Total(Incl. taxes)</p>
-                          <p className="mb-2">${totalPrice}</p>
-                        </div>
-
-                        <MDBBtn color="info" block size="lg">
-                          <Link to="/Dashboard/payment">
-                            <div className="d-flex justify-content-between">
-                              <span>${totalPrice}</span>
-                              <span>
-                                Checkout{" "}
-                                <i className="fas fa-long-arrow-alt-right ms-2"></i>
-                              </span>
-                            </div>
-                          </Link>
-                        </MDBBtn>
-                      </MDBCardBody>
-                    </MDBCard>
-                  </MDBCol>
+                  <CartDetails
+                    subTotal={subTotal}
+                    totalPrice={totalPrice}
+                  ></CartDetails>
                 </MDBRow>
               </MDBCardBody>
             </MDBCard>

@@ -72,7 +72,7 @@ const UpdateProduct = () => {
             ProductStock,
             BrandName,
             DiscountPrice,
-            Discount,
+            Discount: `${Discount}% off `,
             category,
           };
 

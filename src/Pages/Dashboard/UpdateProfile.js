@@ -2,42 +2,62 @@ import {
   MDBBtn,
   MDBCard,
   MDBCardBody,
-  MDBCardText,
   MDBCardTitle,
   MDBInput,
 } from "mdb-react-ui-kit";
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import React from "react";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateProfile = () => {
-  const [Name, setName] = useState("");
-  const [Number, setNumber] = useState("");
-  const [Address, setAddress] = useState("");
-  const [Image, setImage] = useState("");
-  const ProfileData = { Name, Number, Address, Image };
   const { id } = useParams();
 
-  const handleUpdateProfile = (id) => {
+  const handleUpdateProfile = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const Name = form.name.value;
+    const Number = form.number.value;
+    const Address = form.address.value;
+    const Image = form.image.files[0];
+
+    const formData = new FormData();
+    formData.append("image", Image);
+
+    // Host Image on Image BB
     fetch(
-      `https://olivia-brand-fashion-backend.vercel.app/userDataUpdate/${id}`,
+      `https://api.imgbb.com/1/upload?key=81a6cc27ee20d033b013542f5d21566b`,
       {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(ProfileData),
+        method: "POST",
+        body: formData,
       }
     )
       .then((res) => res.json())
-      .then(
-        (data) => {
-          // if (data) {
-          //     toast.success('Profile Update')
-          // }
-        },
-        [id]
-      );
+      .then((data) => {
+        if (data.success) {
+          const profileData = { Name, Number, Address, Image: data.data.url };
+
+          fetch(
+            `https://olivia-brand-fashion-backend.vercel.app/userDataUpdate/${id}`,
+            {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(profileData),
+            }
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                Swal.fire(
+                  "Update Success",
+                  "You clicked the button!",
+                  "success"
+                );
+              }
+            });
+        }
+      });
   };
 
   return (
@@ -45,42 +65,24 @@ const UpdateProfile = () => {
       <MDBCard alignment="center" className="w-auto mt-5 col-sm-12">
         <MDBCardBody>
           <MDBCardTitle>Update Profile</MDBCardTitle>
-          <form>
-            <MDBInput
-              label="Name"
-              name="Name"
-              onChange={(e) => setName(e.target.value)}
-              id="form1"
-              type="text"
-            />
+          <form onSubmit={handleUpdateProfile}>
+            <MDBInput label="Name" name="name" id="form1" type="text" />
             <MDBInput
               label="Number"
-              name="Number"
-              onChange={(e) => setNumber(e.target.value)}
+              name="number"
               className="my-3"
               id="form1"
               type="number"
             />
-            <MDBInput
-              label="Address"
-              name="Address"
-              onChange={(e) => setAddress(e.target.value)}
-              id="form1"
-              type="text"
+            <MDBInput label="Address" name="address" id="form1" type="text" />{" "}
+            <br />
+            <input
+              class="form-control"
+              name="image"
+              type="file"
+              id="formFile"
             />
-            <MDBInput
-              label="Image"
-              className="my-3"
-              name="Image"
-              onClick={(e) => setImage(e.target.value)}
-              id="form1"
-              type="text"
-            />
-            <MDBBtn
-              color="dark"
-              className="my-3"
-              onClick={() => handleUpdateProfile(id)}
-            >
+            <MDBBtn color="dark" className="my-3" type="submit">
               submit
             </MDBBtn>
           </form>

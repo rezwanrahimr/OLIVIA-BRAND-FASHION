@@ -50,7 +50,7 @@ const AddProduct = () => {
             ProductStock,
             BrandName,
             DiscountPrice,
-            Discount,
+            Discount: `${Discount}% off `,
             category,
           };
 
