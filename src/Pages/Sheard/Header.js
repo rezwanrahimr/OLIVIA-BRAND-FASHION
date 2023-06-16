@@ -12,6 +12,9 @@ import { useContext } from "react";
 import { authContext } from "../../context/AuthContext";
 import OfferHeader from "./OfferHeader/OfferHeader";
 import { ProductCartContext } from "../../context/CartContext";
+import { HiOutlineUser } from "react-icons/hi";
+import { BsSearch } from "react-icons/bs";
+import { BiShoppingBag } from "react-icons/bi";
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
@@ -27,7 +30,7 @@ const Header = () => {
   const handleLogOut = () => {
     handleSignOut()
       .then(() => {
-        localStorage.removeItem("tokne");
+        localStorage.removeItem("accessToken");
       })
       .catch((error) => {});
   };
@@ -59,86 +62,102 @@ const Header = () => {
               navbarScroll
             >
               <Link className="text-decoration-none" to="/home">
-                <Nav.Link href="/home" className="fw-bold text-black">
+                <Nav.Link
+                  href="/home"
+                  className="fw-bold text-black font-monospace"
+                >
                   HOME
                 </Nav.Link>
               </Link>
               <Link className="text-decoration-none" to="/Collection">
-                <Nav.Link href="/Collection" className="fw-bold text-black">
+                <Nav.Link
+                  href="/Collection"
+                  className="fw-bold text-black font-monospace"
+                >
                   COLLECTION{" "}
                 </Nav.Link>
               </Link>
 
               <Link className="text-decoration-none" to="/Shop">
                 {" "}
-                <Nav.Link href="#action2" className="fw-bold text-black">
+                <Nav.Link
+                  href="#action2"
+                  className="fw-bold text-black font-monospace"
+                >
                   SHOP{" "}
                 </Nav.Link>
               </Link>
               <Link className="text-decoration-none" to="/About">
-                <Nav.Link href="#action2" className="fw-bold text-black">
+                <Nav.Link
+                  href="#action2"
+                  className="fw-bold text-black font-monospace"
+                >
                   ABOUT{" "}
                 </Nav.Link>
               </Link>
             </Nav>
 
             <Nav.Link className="fw-bold text-black" onClick={handleOpenModal}>
-              <i className="fa-solid fa-magnifying-glass fa-lg"></i>
+              <BsSearch size="24" />
             </Nav.Link>
 
-            <div className="dropdown ">
-              <span
-                className=" dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i className="fa-regular fa-user fa-lg"></i>
-              </span>
-              <ul
-                className="dropdown-menu p-2"
-                aria-labelledby="dropdownMenuButton1"
-              >
-                {user?.email ? (
-                  <>
+            <Nav.Link className="fw-bold text-black p-0">
+              {" "}
+              <div className="dropdown ">
+                <span
+                  className=" dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <HiOutlineUser size="24" />
+                  {/*  */}
+                </span>
+                <ul
+                  className="dropdown-menu p-2"
+                  aria-labelledby="dropdownMenuButton1"
+                >
+                  {user?.email ? (
+                    <>
+                      <li>
+                        <Link
+                          id="dropdownItem"
+                          to="/login"
+                          onClick={handleLogOut}
+                        >
+                          Sign out
+                        </Link>
+                      </li>
+                      <li>
+                        <Link id="dropdownItem" to="Dashboard">
+                          Dashboard
+                        </Link>
+                      </li>
+                      <li>
+                        <Link id="dropdownItem" to="/Dashboard/MyProfile">
+                          Profile
+                        </Link>
+                      </li>
+                    </>
+                  ) : (
                     <li>
-                      <Link
-                        id="dropdownItem"
-                        to="/login"
-                        onClick={handleLogOut}
-                      >
-                        Sign out
+                      <Link id="dropdownItem" to="/login">
+                        Login
                       </Link>
                     </li>
-                    <li>
-                      <Link id="dropdownItem" to="Dashboard">
-                        Dashboard
-                      </Link>
-                    </li>
-                    <li>
-                      <Link id="dropdownItem" to="/Dashboard/MyProfile">
-                        Profile
-                      </Link>
-                    </li>
-                  </>
-                ) : (
-                  <li>
-                    <Link id="dropdownItem" to="/login">
-                      Login
-                    </Link>
-                  </li>
-                )}
-              </ul>
-            </div>
+                  )}
+                </ul>
+              </div>
+            </Nav.Link>
 
             <Nav.Link
               className="fw-bold text-black"
               onClick={() => navigate("/productsCart")}
             >
               <span type="" className="position-relative">
-                <i className="fa-solid fa-bag-shopping fa-lg "></i>
-                <span className="position-absolute text-success top-0 start-100 translate-middle badge ">
+                <BiShoppingBag size="24" />
+                <span className="position-absolute text-success top-0 start-100 translate-middle badge bg-black text-white rounded-circle">
                   {cartItems?.length}
                 </span>
               </span>

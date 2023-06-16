@@ -1,6 +1,7 @@
 import React from "react";
 import video from "./video.mp4";
 import style from "./BackgroundVideo.module.css";
+import { Link } from "react-router-dom";
 
 const BackgroundVideo = () => {
   const currentDate = new Date();
@@ -20,12 +21,14 @@ const BackgroundVideo = () => {
         <p>
           {day} {month} {year}
         </p>
-        <button>
-          View More{" "}
-          <span className={style.btnArrow}>
-            <i className="fa-solid fa-arrow-right"></i>
-          </span>
-        </button>
+        <Link to="/shop">
+          <button>
+            View More{" "}
+            <span className={style.btnArrow}>
+              <i className="fa-solid fa-arrow-right"></i>
+            </span>
+          </button>
+        </Link>
       </div>
     </div>
   );
