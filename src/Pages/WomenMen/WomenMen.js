@@ -9,6 +9,7 @@ const WomenMen = () => {
   return (
     <div className="p-3 ">
       <div className="row">
+        {/* Card 1 */}
         <div className="col-lg-6 ">
           <Card className="bg-dark text-white border-0 containeer">
             <Card.Img className="imgHover" src={col1} alt="Card image" />
@@ -20,7 +21,7 @@ const WomenMen = () => {
                 </h2>
                 <h2 className="text-black font-monospace fw-bold">Clothing</h2>
                 <Card.Text>
-                  <Link to="" className="text-black fw-bold">
+                  <Link to="/shop" className="text-black fw-bold">
                     Shop Clother
                   </Link>
                 </Card.Text>
@@ -28,6 +29,8 @@ const WomenMen = () => {
             </Card.ImgOverlay>
           </Card>
         </div>
+
+        {/* Card 2 */}
         <div className="col-lg-6 ">
           <Card className="bg-dark text-white border-0 containeer">
             <Card.Img className="imgHover" src={col2} alt="Card image" />
@@ -39,7 +42,7 @@ const WomenMen = () => {
                   Neck Cotton
                 </h2>
                 <Card.Text>
-                  <Link to="" className="text-black fw-bold">
+                  <Link to="/shop" className="text-black fw-bold">
                     Shop Clother
                   </Link>
                 </Card.Text>
