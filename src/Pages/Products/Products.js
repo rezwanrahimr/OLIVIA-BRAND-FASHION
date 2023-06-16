@@ -1,21 +1,29 @@
-import React, { useEffect } from "react";
-import "./products.css";
-import { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ProductCartContext } from "../../context/CartContext";
+import "./products.css";
+import { useQuery } from "react-query";
+import Loading from "../Sheard/Loading";
 
 const Products = () => {
-  const [product, setProduct] = useState([]);
   const { handleAddToCart } = useContext(ProductCartContext);
 
-  useEffect(() => {
-    fetch("https://olivia-brand-fashion-backend.vercel.app/products")
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
-  }, []);
+  const { data: product, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const res = await fetch(
+        "https://olivia-brand-fashion-backend.vercel.app/products"
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
 
-  console.log(product);
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <section id="mySection">
       <div className=" mt-5">
@@ -33,7 +41,7 @@ const Products = () => {
                       <img
                         className="w-100"
                         src={products.ProductImage}
-                        alt="product image"
+                        alt="product"
                       />
                     </div>
                     <div className="product-btns">
@@ -48,8 +56,12 @@ const Products = () => {
                           <i className="fas fa-plus"></i>
                         </span>
                       </button>
-                      <Link to={`/Cart/${products._id}`}>
-                        <button type="button" className="btn-buy">
+                      <Link to="/productsCart">
+                        <button
+                          type="button"
+                          className="btn-buy"
+                          onClick={() => handleAddToCart(products)}
+                        >
                           {" "}
                           buy now
                           <span>
