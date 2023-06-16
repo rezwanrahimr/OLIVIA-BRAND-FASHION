@@ -147,7 +147,7 @@ const AddProduct = () => {
                 <label>Image</label>
                 <input
                   required
-                  class="form-control"
+                  className="form-control"
                   name="image"
                   type="file"
                   id="formFile"
@@ -156,7 +156,7 @@ const AddProduct = () => {
                 <label>Description</label>
                 <textarea
                   required
-                  class="form-control"
+                  className="form-control"
                   name="description"
                   id="exampleFormControlTextarea1"
                   rows="3"

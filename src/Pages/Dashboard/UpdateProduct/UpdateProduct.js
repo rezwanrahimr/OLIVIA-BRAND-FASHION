@@ -177,7 +177,7 @@ const UpdateProduct = () => {
                 <label>Image</label>
                 <input
                   required
-                  class="form-control"
+                  className="form-control"
                   name="image"
                   type="file"
                   id="formFile"
@@ -187,7 +187,7 @@ const UpdateProduct = () => {
                 <textarea
                   defaultValue={ProductDescription}
                   required
-                  class="form-control"
+                  className="form-control"
                   name="description"
                   id="exampleFormControlTextarea1"
                   rows="3"

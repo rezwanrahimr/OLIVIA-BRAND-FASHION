@@ -23,7 +23,7 @@ const BackgroundVideo = () => {
         <button>
           View More{" "}
           <span className={style.btnArrow}>
-            <i class="fa-solid fa-arrow-right"></i>
+            <i className="fa-solid fa-arrow-right"></i>
           </span>
         </button>
       </div>

@@ -14,7 +14,7 @@ const MakeAdmin = () => {
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/user", {
         headers: {
-          authorization: `Bearer ${localStorage.getItem("accesToken")}`,
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
       const data = await res.json();

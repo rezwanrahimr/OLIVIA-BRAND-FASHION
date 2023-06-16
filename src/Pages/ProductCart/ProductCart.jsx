@@ -107,7 +107,7 @@ function ProductCart() {
                                         background: "none",
                                       }}
                                     >
-                                      <i class="fa-solid fa-minus fa-fade"></i>
+                                      <i className="fa-solid fa-minus fa-fade"></i>
                                     </button>
                                   ) : (
                                     ""
@@ -134,7 +134,7 @@ function ProductCart() {
                                       background: "none",
                                     }}
                                   >
-                                    <i class="fa-solid fa-plus fa-fade"></i>
+                                    <i className="fa-solid fa-plus fa-fade"></i>
                                   </button>
                                 </MDBTypography>
                               </div>

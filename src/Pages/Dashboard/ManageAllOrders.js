@@ -107,10 +107,10 @@ const ManageAllOrders = () => {
               <td>
                 <button
                   type="button"
-                  class="bg-none border-0"
+                  className="bg-none border-0"
                   onClick={() => handleDeleteOrder(order._id)}
                 >
-                  <i class="fa-solid fa-xmark"></i>
+                  <i className="fa-solid fa-xmark"></i>
                 </button>
               </td>
             </tr>

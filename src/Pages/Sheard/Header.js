@@ -2,7 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CompanyLogo from "../../images/companyLogo.png";
 import Loading from "./Loading";
 import "./header.css";
@@ -17,6 +17,8 @@ const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const { user, isLoading, handleSignOut } = useContext(authContext);
   const { cartItems } = useContext(ProductCartContext);
+
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -84,7 +86,7 @@ const Header = () => {
               <i className="fa-solid fa-magnifying-glass fa-lg"></i>
             </Nav.Link>
 
-            <div className="dropdown">
+            <div className="dropdown ">
               <span
                 className=" dropdown-toggle"
                 type="button"
@@ -95,38 +97,52 @@ const Header = () => {
                 <i className="fa-regular fa-user fa-lg"></i>
               </span>
               <ul
-                className="dropdown-menu"
+                className="dropdown-menu p-2"
                 aria-labelledby="dropdownMenuButton1"
               >
                 {user?.email ? (
                   <>
                     <li>
-                      <Link to="/login" onClick={handleLogOut}>
+                      <Link
+                        id="dropdownItem"
+                        to="/login"
+                        onClick={handleLogOut}
+                      >
                         Sign out
                       </Link>
                     </li>
                     <li>
-                      <Link to="Dashboard">Dashboard</Link>
+                      <Link id="dropdownItem" to="Dashboard">
+                        Dashboard
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/Dashboard/MyProfile">Profile</Link>
+                      <Link id="dropdownItem" to="/Dashboard/MyProfile">
+                        Profile
+                      </Link>
                     </li>
                   </>
                 ) : (
                   <li>
-                    <Link to="/login">Login</Link>
+                    <Link id="dropdownItem" to="/login">
+                      Login
+                    </Link>
                   </li>
                 )}
               </ul>
             </div>
-            <Link className="text-decoration-none" to="/productsCart">
+
+            <Nav.Link
+              className="fw-bold text-black"
+              onClick={() => navigate("/productsCart")}
+            >
               <span type="" className="position-relative">
                 <i className="fa-solid fa-bag-shopping fa-lg "></i>
                 <span className="position-absolute text-success top-0 start-100 translate-middle badge ">
                   {cartItems?.length}
                 </span>
               </span>
-            </Link>
+            </Nav.Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

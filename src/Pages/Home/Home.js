@@ -6,7 +6,7 @@ import Footer from "../Sheard/Footer";
 import Subscribe from "../Subscribe/Subscribe";
 import WomenMen from "../WomenMen/WomenMen";
 import Banner from "./Banner";
-import home from "./home.css";
+import "./home.css";
 import BackgroundVideo from "../BackgrounVideo/BackgroundVideo";
 import LogoSlider from "../LogoSlider/LogoSlider";
 

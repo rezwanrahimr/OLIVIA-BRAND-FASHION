@@ -10,9 +10,9 @@ import {
 import CartDetails from "../CartDetails/CartDetails";
 import { ProductCartContext } from "../../context/CartContext";
 import { useContext } from "react";
-import "./CheckOutForm.css";
 import { authContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import style from "./CheckOutForm.module.css";
 
 const CheckOutForm = () => {
   const { subTotal, totalPrice, setShippingAddress } =
@@ -58,90 +58,90 @@ const CheckOutForm = () => {
                     <hr />
                     <form onSubmit={handleCheckOutForm}>
                       {/* <!-- 2 column grid layout with text inputs for the first and last names --> */}
-                      <div class="row mb-4">
-                        <div class="col">
-                          <div class="form-outline">
+                      <div className="row mb-4">
+                        <div className="col">
+                          <div className="form-outline">
                             <input
                               required
                               name="firstName"
                               type="text"
                               id="form6Example1"
-                              class="form-control"
+                              className={`form-control ${style.inputBorder}`}
                             />
-                            <label class="form-label" for="form6Example1">
+                            <label className="form-label" for="form6Example1">
                               First name
                             </label>
                           </div>
                         </div>
-                        <div class="col">
-                          <div class="form-outline">
+                        <div className="col">
+                          <div className="form-outline">
                             <input
                               required
                               name="lastName"
                               type="text"
                               id="form6Example2"
-                              class="form-control"
+                              className={`form-control ${style.inputBorder}`}
                             />
-                            <label class="form-label" for="form6Example2">
+                            <label className="form-label" for="form6Example2">
                               Last name
                             </label>
                           </div>
                         </div>
                       </div>
                       {/* <!-- Text input --> */}
-                      <div class="form-outline mb-4">
+                      <div className="form-outline mb-4">
                         <input
                           required
                           name="address"
                           type="text"
                           id="form6Example4"
-                          class="form-control"
+                          className={`form-control ${style.inputBorder}`}
                         />
-                        <label class="form-label" for="form6Example4">
+                        <label className="form-label" for="form6Example4">
                           Address
                         </label>
                       </div>
                       {/* <!-- Email input --> */}
-                      <div class="form-outline mb-4">
+                      <div className="form-outline mb-4">
                         <input
                           name="email"
                           value={user?.email}
                           type="email"
                           id="form6Example5"
-                          class="form-control"
+                          className={`form-control ${style.inputBorder}`}
                         />
                       </div>
                       {/* <!-- Number input --> */}
-                      <div class="form-outline mb-4">
+                      <div className="form-outline mb-4">
                         <input
                           required
                           name="phone"
                           type="number"
                           id="form6Example6"
-                          class="form-control"
+                          className={`form-control ${style.inputBorder}`}
                         />
-                        <label class="form-label" for="form6Example6">
+                        <label className="form-label" for="form6Example6">
                           Phone
                         </label>
                       </div>
                       {/* 
   <!-- Message input --> */}
-                      <div class="form-outline mb-4">
+                      <div className="form-outline mb-4">
                         <textarea
                           required
                           name="additionalInfo"
-                          class="form-control"
+                          className={`form-control ${style.inputBorder}`}
                           id="form6Example7"
                           rows="4"
                         ></textarea>
-                        <label class="form-label" for="form6Example7">
+                        <label className="form-label" for="form6Example7">
                           Additional information
                         </label>
                       </div>
                       {/* <!-- Submit button --> */}
                       <button
                         type="submit"
-                        class="btn btn-primary btn-block mb-4"
+                        className="btn btn-primary btn-block mb-4"
                       >
                         Place order
                       </button>

@@ -1,14 +1,17 @@
-.body{
-    margin: 0px !important;
-    padding: 0px !important;
+.body {
+  margin: 0px !important;
+  padding: 0px !important;
 }
 
-.dropdown:hover .dropdown-menu{
-    display: block;
+.dropdown:hover .dropdown-menu {
+  display: block;
 }
-.dropdown-toggle::after{
-    display: none !important;
+.dropdown-toggle::after {
+  display: none !important;
 }
 .nav-link {
-    color: black !important;
+  color: black !important;
+}
+#dropdownItem {
+  color: black !important;
 }

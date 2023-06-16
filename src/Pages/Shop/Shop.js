@@ -23,15 +23,6 @@ const Shop = () => {
     },
   });
 
-  // Load All Products.
-  /*  useEffect(() => {
-    fetch(
-      `https://olivia-brand-fashion-backend.vercel.app/productss?page=${selectPage}&size=${productSize}`
-    )
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
-  }, [selectPage, productSize]); */
-
   // Product Count.
   useEffect(() => {
     fetch("https://olivia-brand-fashion-backend.vercel.app/productsCount")
@@ -46,79 +37,84 @@ const Shop = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
+  console.log(product);
   return (
     <div className="shop-container">
       <div className="AllProducts">
-        {product.map((products) => (
-          <div key={products._id}>
-            <div className="product-items">
-              {" "}
-              <div className="product">
-                <div className="product-content">
-                  <div className="product-img">
-                    <img
-                      className="w-100"
-                      src={products.ProductImage}
-                      alt="product image"
-                    />
-                  </div>
-                  <div className="product-btns">
-                    <button type="button" className="btn-cart">
-                      {" "}
-                      add to cart
-                      <span>
-                        <i className="fas fa-plus"></i>
-                      </span>
-                    </button>
-                    <Link to={`/Cart/${products._id}`}>
-                      <button type="button" className="btn-buy">
+        {product?.length < 1 ? (
+          <h1>No Data Found !</h1>
+        ) : (
+          product.map((products) => (
+            <div key={products._id}>
+              <div className="product-items">
+                {" "}
+                <div className="product">
+                  <div className="product-content">
+                    <div className="product-img">
+                      <img
+                        className="w-100"
+                        src={products.ProductImage}
+                        alt="product image"
+                      />
+                    </div>
+                    <div className="product-btns">
+                      <button type="button" className="btn-cart">
                         {" "}
-                        buy now
+                        add to cart
                         <span>
-                          <i className="fas fa-shopping-cart"></i>
+                          <i className="fas fa-plus"></i>
                         </span>
                       </button>
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="product-info">
-                  <div className="product-info-top">
-                    <h2 className="sm-title">{products.BrandName}</h2>
-                    <div className="rating">
-                      <span>
-                        <i className="fas fa-star"></i>
-                      </span>
-                      <span>
-                        <i className="fas fa-star"></i>
-                      </span>
-                      <span>
-                        <i className="fas fa-star"></i>
-                      </span>
-                      <span>
-                        <i className="fas fa-star"></i>
-                      </span>
-                      <span>
-                        <i className="far fa-star"></i>
-                      </span>
+                      <Link to={`/Cart/${products._id}`}>
+                        <button type="button" className="btn-buy">
+                          {" "}
+                          buy now
+                          <span>
+                            <i className="fas fa-shopping-cart"></i>
+                          </span>
+                        </button>
+                      </Link>
                     </div>
                   </div>
-                  <a href="#" className="product-name">
-                    {products.productName}
-                  </a>
-                  <p className="product-price">{products.DiscountPrice}</p>
-                  <p className="product-price">{products.ProductPrice}</p>
-                </div>
 
-                <div className="off-info">
-                  <h2 className={products.Discount ? "sm-title" : ""}>
-                    {products.Discount}
-                  </h2>
+                  <div className="product-info">
+                    <div className="product-info-top">
+                      <h2 className="sm-title">{products.BrandName}</h2>
+                      <div className="rating">
+                        <span>
+                          <i className="fas fa-star"></i>
+                        </span>
+                        <span>
+                          <i className="fas fa-star"></i>
+                        </span>
+                        <span>
+                          <i className="fas fa-star"></i>
+                        </span>
+                        <span>
+                          <i className="fas fa-star"></i>
+                        </span>
+                        <span>
+                          <i className="far fa-star"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <a href="#" className="product-name">
+                      {products.productName}
+                    </a>
+                    <p className="product-price">{products.DiscountPrice}</p>
+                    <p className="product-price">{products.ProductPrice}</p>
+                  </div>
+
+                  <div className="off-info">
+                    <h2 className={products.Discount ? "sm-title" : ""}>
+                      {products.Discount}
+                    </h2>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
       <div className="d-flex justify-content-center paginaton-button my-5">

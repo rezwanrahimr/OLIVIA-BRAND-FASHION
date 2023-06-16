@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 import BannerOne from "../../images/banner1.png";
 import "./banner.css";
 import test from "./bag_5dd52ac7-e94f-463a-8273-a8cd1578a2ce.mp4";
+import { Link } from "react-router-dom";
 const Banner = () => {
   return (
     <div className="banner-container">
       <Carousel fade>
         <Carousel.Item>
           <img className="d-block w-100" src={BannerOne} alt="Second slide" />
-
+          {/* Carousel Item 1 */}
           <Carousel.Caption>
             <div className="HeaderText">
               <h5 className="text-muted text-start fw-bold lh-1">
@@ -22,15 +23,19 @@ const Banner = () => {
               <h1 className="text-dark text-start fw-bold display-2 lh-1">
                 Black Friday
               </h1>
-              <Button
-                className="d-flex justify-content-startd text-black fw-bold mt-5"
-                variant="outline-danger"
-              >
-                SHOP NOW{" "}
-              </Button>{" "}
+              <Link to={"/shop"}>
+                {" "}
+                <Button
+                  className="d-flex justify-content-startd text-black fw-bold mt-5"
+                  variant="outline-danger"
+                >
+                  SHOP NOW{" "}
+                </Button>
+              </Link>{" "}
             </div>
           </Carousel.Caption>
         </Carousel.Item>
+        {/* Carousel Item 2 */}
         <Carousel.Item>
           <video src={test} autoPlay loop muted playsInline></video>
           <Carousel.Caption className="carousel-content">
@@ -42,13 +47,16 @@ const Banner = () => {
                 {" "}
                 BAG COLLECTIONS
               </h2>
-              <Button className="d-flex justify-content-startd fw-bold mt-4">
-                SHOP NOW
-              </Button>{" "}
+              <Link to={"/shop"}>
+                {" "}
+                <Button className="d-flex justify-content-startd fw-bold mt-4">
+                  SHOP NOW
+                </Button>
+              </Link>
             </div>
           </Carousel.Caption>
         </Carousel.Item>
-
+        {/* Carousel Item 3 */}
         <Carousel.Item>
           <img className="d-block w-100" src={BannerOne} alt="Third slide" />
           <Carousel.Caption>
@@ -62,12 +70,14 @@ const Banner = () => {
               <h1 className="text-dark text-start fw-bold display-2 lh-1">
                 Black Friday
               </h1>
-              <Button
-                className="d-flex justify-content-startd text-black fw-bold mt-5"
-                variant="outline-danger"
-              >
-                SHOP NOW
-              </Button>{" "}
+              <Link to={"/shop"}>
+                <Button
+                  className="d-flex justify-content-startd text-black fw-bold mt-5"
+                  variant="outline-danger"
+                >
+                  SHOP NOW
+                </Button>
+              </Link>{" "}
             </div>
           </Carousel.Caption>
         </Carousel.Item>

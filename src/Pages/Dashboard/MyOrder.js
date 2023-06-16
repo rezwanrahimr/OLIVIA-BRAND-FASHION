@@ -111,7 +111,10 @@ const MyOrder = () => {
                   ) : (
                     <>
                       <Link to="/productsCart">
-                        <button type="button" class="btn btn-light btn-rounded">
+                        <button
+                          type="button"
+                          className="btn btn-light btn-rounded"
+                        >
                           {" "}
                           payment
                         </button>
@@ -120,9 +123,9 @@ const MyOrder = () => {
                       <button
                         onClick={() => HandleDelete(product._id)}
                         type="button"
-                        class="btn btn-light btn-rounded ms-3"
+                        className="btn btn-light btn-rounded ms-3"
                       >
-                        <i class="fa-solid fa-trash"></i>
+                        <i className="fa-solid fa-trash"></i>
                       </button>
                     </>
                   )}

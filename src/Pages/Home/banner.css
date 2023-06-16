@@ -45,11 +45,16 @@
   }
 }
 
+/* Mobile Responsive */
 @media screen and (max-width: 480px) {
   .HeaderText h5 {
+    margin-top: 30px;
     font-size: x-small !important;
   }
   .HeaderText h1 {
+    font-size: large !important;
+  }
+  h2 {
     font-size: large !important;
   }
   .HeaderText button {

@@ -61,7 +61,10 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center row">
+    <div
+      className="d-flex justify-content-center row"
+      style={{ marginTop: "80px", marginLeft: "0px", marginRight: "0px" }}
+    >
       <MDBCard alignment="center" className="w-auto mt-5 col-sm-12">
         <MDBCardBody>
           <MDBCardTitle>Update Profile</MDBCardTitle>
@@ -77,7 +80,7 @@ const UpdateProfile = () => {
             <MDBInput label="Address" name="address" id="form1" type="text" />{" "}
             <br />
             <input
-              class="form-control"
+              className="form-control"
               name="image"
               type="file"
               id="formFile"

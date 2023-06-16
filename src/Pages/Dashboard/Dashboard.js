@@ -20,9 +20,15 @@ const Dashboard = () => {
       <div className="sidebar-container">
         <div className="toggleBar">
           {isOpen === false ? (
-            <i class="fa-solid fa-list" onClick={() => setIsOpen(!isOpen)}></i>
+            <i
+              className="fa-solid fa-list"
+              onClick={() => setIsOpen(!isOpen)}
+            ></i>
           ) : (
-            <i class="fa-solid fa-xmark" onClick={() => setIsOpen(!isOpen)}></i>
+            <i
+              className="fa-solid fa-xmark"
+              onClick={() => setIsOpen(!isOpen)}
+            ></i>
           )}
         </div>
         <div className={`sidebar ${isOpen === false ? "sidebarDisplay" : ""}`}>
