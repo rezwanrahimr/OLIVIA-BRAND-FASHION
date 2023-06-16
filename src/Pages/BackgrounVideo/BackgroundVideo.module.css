@@ -57,6 +57,9 @@ video {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px) {
+  .content {
+    padding: 50px;
+  }
   .content > h2 {
     font-size: 34px;
     font-weight: 600;
