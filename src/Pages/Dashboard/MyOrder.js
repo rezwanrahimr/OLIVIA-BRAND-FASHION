@@ -19,7 +19,9 @@ const MyOrder = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/get-order-details?email=${user?.email}`)
+      fetch(
+        `https://olivia-brand-fashion-backend.vercel.app/get-order-details?email=${user?.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           let allProducts = [];

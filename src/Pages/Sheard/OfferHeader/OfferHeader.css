@@ -13,3 +13,10 @@
   background: none;
   border: none;
 }
+
+@media (max-width: 768px) {
+  .offer-container p {
+    margin-top: 6px;
+    font-size: 10px;
+  }
+}

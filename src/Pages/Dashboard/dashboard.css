@@ -8,10 +8,6 @@
   border-radius: 0 35px 0 0;
 }
 
-.sidebar-container .sidebarDisplay {
-  display: none;
-}
-
 /* Sidebar links */
 .sidebar a {
   display: block;
@@ -41,11 +37,6 @@ div.content {
   height: 1000px;
 }
 
-@media screen and (min-width: 700px) {
-  .toggleBar {
-    display: none;
-  }
-}
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
   .sidebar {
@@ -69,9 +60,21 @@ div.content {
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 768px) {
   .sidebar a {
     text-align: center;
     float: none;
+  }
+  .sidebar-container .sidebarDisplay {
+    display: none;
+  }
+  .toggleBar {
+    display: visible;
+  }
+}
+
+@media (min-width: 768px) {
+  .toggleBar {
+    display: none;
   }
 }

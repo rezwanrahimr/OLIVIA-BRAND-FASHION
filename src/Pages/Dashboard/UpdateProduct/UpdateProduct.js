@@ -12,7 +12,9 @@ const UpdateProduct = () => {
   const { data = [], isLoading: load } = useQuery({
     queryKey: [""],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/products/${id}`);
+      const res = await fetch(
+        `https://olivia-brand-fashion-backend.vercel.app/products/${id}`
+      );
       const data = await res.json();
       return data;
     },
@@ -78,13 +80,16 @@ const UpdateProduct = () => {
 
           console.log(productData);
           // Store Product on Database
-          fetch(`http://localhost:5000/products/${id}`, {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(productData),
-          })
+          fetch(
+            `https://olivia-brand-fashion-backend.vercel.app/products/${id}`,
+            {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(productData),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               if (data.acknowledged) {

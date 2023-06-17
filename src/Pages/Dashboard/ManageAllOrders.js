@@ -18,7 +18,9 @@ const ManageAllOrders = () => {
   } = useQuery({
     queryKey: ["get-all-orders"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/get-all-orders");
+      const res = await fetch(
+        "https://olivia-brand-fashion-backend.vercel.app/get-all-orders"
+      );
       const data = await res.json();
       return data;
     },
@@ -40,9 +42,12 @@ const ManageAllOrders = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/delete-order/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://olivia-brand-fashion-backend.vercel.app/delete-order/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.acknowledged) {
@@ -54,7 +59,7 @@ const ManageAllOrders = () => {
     });
   };
   return (
-    <div className="mt-3">
+    <div className="mt-3 order-container">
       <MDBTable align="middle">
         <MDBTableHead className="table-dark">
           <tr>

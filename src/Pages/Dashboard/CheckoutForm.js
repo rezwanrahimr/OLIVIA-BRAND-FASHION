@@ -20,13 +20,16 @@ const CheckoutForm = () => {
   } = useContext(ProductCartContext);
   console.log(shippingAddress);
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ price: finalPrice }),
-    })
+    fetch(
+      "https://olivia-brand-fashion-backend.vercel.app/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ price: finalPrice }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
@@ -77,13 +80,16 @@ const CheckoutForm = () => {
 
       // Post data
       const postData = (paymentData) => {
-        fetch("http://localhost:5000/paymentProduct", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(paymentData),
-        })
+        fetch(
+          "https://olivia-brand-fashion-backend.vercel.app/paymentProduct",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(paymentData),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

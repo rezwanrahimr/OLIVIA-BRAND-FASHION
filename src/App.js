@@ -20,6 +20,7 @@ import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 import ProductCart from "./Pages/ProductCart/ProductCart";
 import UpdateProduct from "./Pages/Dashboard/UpdateProduct/UpdateProduct";
 import CheckOutForm from "./Pages/CheckOutForm/CheckOutForm";
+import ProtractedRoute from "./Pages/ProtractedRoute/ProtractedRoute";
 
 function App() {
   return (
@@ -45,13 +46,24 @@ function App() {
         ></Route>
         <Route
           path="/checkoutForm"
-          element={<CheckOutForm></CheckOutForm>}
+          element={
+            <ProtractedRoute>
+              <CheckOutForm></CheckOutForm>
+            </ProtractedRoute>
+          }
         ></Route>
 
         <Route path="/Dashboard" element={<Dashboard></Dashboard>}>
           <Route index element={<MyOrder></MyOrder>}></Route>
 
-          <Route path="payment" element={<Payment></Payment>}></Route>
+          <Route
+            path="payment"
+            element={
+              <ProtractedRoute>
+                <Payment></Payment>
+              </ProtractedRoute>
+            }
+          ></Route>
           <Route path="MyProfile" element={<MyProfile></MyProfile>}></Route>
           <Route
             path="ManageAllOrders"

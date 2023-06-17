@@ -81,7 +81,7 @@ const AddProduct = () => {
   return (
     <div>
       <div className="d-flex justify-content-center">
-        <Card style={{ width: "50%" }}>
+        <Card className="add-product-card">
           <Card.Body>
             <h5 className="text-center my-1 fw-bold">ADD PRODUCTS</h5>
             <div className="d-flex justify-content-center">

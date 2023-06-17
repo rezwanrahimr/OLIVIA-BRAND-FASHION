@@ -8,3 +8,13 @@ form input {
   border-radius: 10px;
   background: #f0f0f0;
 }
+
+.add-product-card {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .add-product-card {
+    width: 100%;
+  }
+}

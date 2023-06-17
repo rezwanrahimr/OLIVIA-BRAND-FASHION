@@ -23,6 +23,7 @@ const CartContext = ({ children }) => {
   // Handle Add To Cart
 
   const handleAddToCart = (products) => {
+    console.log(products);
     if (cartProducts?.length > 0) {
       const checkProduct = cartProducts?.filter(
         (ele) => ele._id == products._id
@@ -32,6 +33,7 @@ const CartContext = ({ children }) => {
       }
     }
 
+    setCartQuantity(cartQuantity + 1);
     const productData = {
       _id: products._id,
       productName: products.productName,
@@ -47,8 +49,10 @@ const CartContext = ({ children }) => {
       newCart = [...cartProducts, productData];
       setCartProducts(newCart);
     } else {
-      newCart = [productData];
-      setCartProducts(newCart);
+      if (productData !== {}) {
+        newCart = [productData];
+        setCartProducts(newCart);
+      }
     }
 
     setLocalStorage(cartProducts);
@@ -56,6 +60,8 @@ const CartContext = ({ children }) => {
 
   const setLocalStorage = (products) => {
     localStorage.setItem("cartProducts", JSON.stringify(products));
+
+    console.log(products);
   };
 
   const removeItem = (id) => {
@@ -69,6 +75,7 @@ const CartContext = ({ children }) => {
   useEffect(() => {
     const items = localStorage.getItem("cartProducts");
     const cartItems = JSON.parse(items);
+    console.log("test", cartItems);
     setCartItems(cartItems);
   }, [cartProducts, cartQuantity]);
 

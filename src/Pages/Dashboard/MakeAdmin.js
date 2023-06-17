@@ -12,11 +12,14 @@ const MakeAdmin = () => {
   } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/user", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://olivia-brand-fashion-backend.vercel.app/user",
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       const data = await res.json();
       return data;
     },

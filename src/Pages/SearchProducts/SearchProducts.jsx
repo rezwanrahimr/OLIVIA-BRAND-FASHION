@@ -12,7 +12,7 @@ const SearchProducts = () => {
     queryKey: ["search-products", searchQuery],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/search-products?q=${searchQuery}`
+        `https://olivia-brand-fashion-backend.vercel.app/search-products?q=${searchQuery}`
       );
       const data = await res.json();
       return data;
