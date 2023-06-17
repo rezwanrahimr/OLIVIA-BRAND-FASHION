@@ -21,7 +21,7 @@ const CheckoutForm = () => {
   console.log(shippingAddress);
   useEffect(() => {
     fetch(
-      "https://olivia-brand-fashion-backend.vercel.app/create-payment-intent",
+      " https://olivia-brand-fashion-backend.vercel.app/create-payment-intent",
       {
         method: "POST",
         headers: {
@@ -81,7 +81,7 @@ const CheckoutForm = () => {
       // Post data
       const postData = (paymentData) => {
         fetch(
-          "https://olivia-brand-fashion-backend.vercel.app/paymentProduct",
+          " https://olivia-brand-fashion-backend.vercel.app/paymentProduct",
           {
             method: "POST",
             headers: {
