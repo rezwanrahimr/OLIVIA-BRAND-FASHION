@@ -22,9 +22,14 @@ const SearchProducts = () => {
     return <Loading></Loading>;
   }
   return (
-    <div>
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 m-0">
-        {products.map((product) => (
+    <div style={{ marginTop: "100px" }}>
+      {products?.length === 0 && (
+        <div className="text-center flex align-items-center">
+          <h1>No Data Found !</h1>
+        </div>
+      )}
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 m-0">
+        {products?.map((product) => (
           <ProductCard key={product._id} product={product}></ProductCard>
         ))}
       </div>

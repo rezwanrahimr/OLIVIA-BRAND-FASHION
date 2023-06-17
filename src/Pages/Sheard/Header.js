@@ -101,7 +101,7 @@ const Header = () => {
               <BsSearch size="24" />
             </Nav.Link>
 
-            <Nav.Link className="fw-bold text-black p-0">
+            <Nav.Link className="fw-bold text-black user-container">
               {" "}
               <div className="dropdown ">
                 <span

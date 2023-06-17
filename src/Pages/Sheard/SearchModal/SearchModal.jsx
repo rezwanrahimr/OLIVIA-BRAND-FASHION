@@ -32,7 +32,7 @@ const SearchModal = ({ showModal, setShowModal }) => {
             <input
               className="form-control me-2"
               type="search"
-              placeholder="Search"
+              placeholder="Search : Fashion - Men"
               aria-label="Search"
               onChange={(e) => setSearchText(e.target.value)}
               onKeyPress={handlekey}

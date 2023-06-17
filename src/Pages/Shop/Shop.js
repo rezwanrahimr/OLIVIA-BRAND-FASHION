@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Sheard/Footer";
 import Subscribe from "../Subscribe/Subscribe";
 import "./shop.css";
 import { useQuery } from "react-query";
 import Loading from "../Sheard/Loading";
+import { ProductCartContext } from "../../context/CartContext";
 
 const Shop = () => {
-  // const [product, setProduct] = useState([]);
   const [productCount, setProductCount] = useState(0);
   const [selectPage, setSelectPage] = useState(0);
   const [productSize, setProductSize] = useState(8);
+  const { handleAddToCart } = useContext(ProductCartContext);
 
   const { data: product, isLoading } = useQuery({
     queryKey: ["productss", selectPage, productSize],
@@ -37,7 +38,7 @@ const Shop = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-  console.log(product);
+
   return (
     <div className="shop-container">
       <div className="AllProducts">
@@ -54,19 +55,27 @@ const Shop = () => {
                       <img
                         className="w-100"
                         src={products.ProductImage}
-                        alt="product image"
+                        alt="product"
                       />
                     </div>
                     <div className="product-btns">
-                      <button type="button" className="btn-cart">
+                      <button
+                        type="button"
+                        className="btn-cart"
+                        onClick={() => handleAddToCart(products)}
+                      >
                         {" "}
                         add to cart
                         <span>
                           <i className="fas fa-plus"></i>
                         </span>
                       </button>
-                      <Link to={`/Cart/${products._id}`}>
-                        <button type="button" className="btn-buy">
+                      <Link to="/productsCart">
+                        <button
+                          type="button"
+                          className="btn-buy"
+                          onClick={() => handleAddToCart(products)}
+                        >
                           {" "}
                           buy now
                           <span>
